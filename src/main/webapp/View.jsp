@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="product.Product"%>
-<%@ page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="product.Product" %>
+<%@ page import="product.ProductVarient" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,22 +19,39 @@
             <th>Price</th>
             <th>Keywords</th>
             <th>Description</th>
+            <th>Colors</th>
+            <th>Sizes</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
-        <% 
-            ArrayList<Product> pr = (ArrayList<Product>) request.getAttribute("data");
-            if (pr != null) {
-                for (Product p : pr) {
+        <%
+            ArrayList<Product> productList = (ArrayList<Product>) request.getAttribute("productList");
+    
+
+            if (productList != null) {
+                for (Product product : productList) {
         %>
         <tr>
-            <td><%= p.getProductName() %></td>
-            <td><img src="<%= p.getProductImage() %>" alt="Product-image" width="100%"></td>
-            <td><%= p.getProductPrice() %></td>
-            <td><%= p.getProductKeyword() %></td>
-            <td><%= p.getProductDescription() %></td>
-            <td><a href='EditServlet?product_id=<%= p.getProductID() %>' style="color: black; text-decoration: none">Edit</a></td>
-            <td><a href='DeleteServlet?product_id=<%= p.getProductID() %>' style="color: black; text-decoration: none">Delete</a></td>
+            <td><%= product.getProductName() %></td>
+            <td><img src="<%= product.getProductImage() %>" alt="Product-image" width="100%"></td>
+            <td><%= product.getProductPrice() %></td>
+            <td><%= product.getProductKeyword() %></td>
+            <td><%= product.getProductDescription() %></td>
+            <td>
+        	      <% for (ProductVarient variant : product.getVariants()) { %>
+                    <span> <%= variant.getColor() %></span>
+                   <% } %>
+                 
+                </td>
+                <td>
+
+                        <% for (ProductVarient variant : product.getVariants()) { %>
+                            <span><%= variant.getSize() %></span>
+                        <% } %>
+
+                </td>
+            <td><a href='EditServlet?product_id=<%= product.getProductID() %>' style="color: black; text-decoration: none">Edit</a></td>
+            <td><a href='DeleteServlet?product_id=<%= product.getProductID() %>' style="color: black; text-decoration: none">Delete</a></td>
         </tr>
         <%
                 }

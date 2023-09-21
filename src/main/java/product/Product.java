@@ -62,11 +62,11 @@ public class Product {
 		this.product_description = description;
 	}
 	
-	 public List<ProductVarient> getVariants() {
+	public List<ProductVarient> getVariants() {
 	        return list;
 	    }
 
-	    public void setVariants(List<ProductVarient> variants) {
+	public void setVariants(List<ProductVarient> variants) {
 	        this.list = variants;
 	    }
 	
