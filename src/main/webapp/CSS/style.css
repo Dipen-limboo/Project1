@@ -1,0 +1,219 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: 0;
+}
+body{
+    font-family: 'Arial';
+    width: 100%;
+    background-color: white;
+   
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 20px;
+    padding: 20px;
+}
+
+nav li a {
+    color: white;
+    text-decoration: none;
+}
+
+.login-form{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.login-Container{
+    background-color: #333;
+    height: 550px;
+    width: 900px;
+    margin-top: 40px;
+    display: flex;
+    border: 1px solid rgb(197, 190, 190);
+    border-radius: 20px;
+    box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, .4);
+}
+
+.login-content{
+    width: 500px;
+    background-color: white;
+    letter-spacing: 1.5px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.login-content h4{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    
+}
+
+.login-content .psw{
+    text-align: left;
+    margin-right: 120px;
+    font-size: 14px;
+    color: black;
+    
+}
+.psw a{
+    color: black;
+    text-decoration: none;
+    font-style: italic;
+}
+
+.login-content p{
+    text-align: left;
+    font-style: italic;
+    font-size: 14px;
+    color: black;
+    padding-left: 20px;
+}
+
+.container label{
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.container input[type=text], input[type=password] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    width: 350px;
+    border: 1px solid #333;
+    box-sizing: border-box;
+}
+.container {
+    padding: 16px;
+}
+.container span{
+    text-align: center;
+}
+
+hr{
+    width: 80px;
+    margin: auto;
+    border: 1.5px solid #333;
+    border-radius: 25%;
+}
+button{
+    color: #f9f9f9;
+    background-color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    width: 350px;
+    border: 1.5px solid #333;
+    font-weight: bold;
+    padding: 8px 30px;
+    transition: 0.5s;
+}
+
+button:hover {
+    color: #333;
+    background-color: #f9f9f9;
+    border: 1.5px solid #333;
+    font-size: 18px;
+}
+
+.content{
+    width: 400px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    justify-content: center;
+}
+.content-header{
+    width: 300px;
+    margin-top: 40%;
+    color: white;
+    letter-spacing: 1.5px;
+}
+
+.content-header h4{
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.content-header p{
+    color: white;
+    text-align: center;
+}
+
+.register-content{
+    width: 500px;
+    background-color: white;
+    letter-spacing: 1.5px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    padding-left: 50px;
+}
+.register-content h4{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+   
+}
+.register-content button{
+    margin-left: 15px;
+}
+
+.content-header button{
+    background-color: #f9f9f9;
+    text-decoration: none;
+    font-size: 16px;
+    width: 120px;
+    
+    margin-left: 27%;
+    border: 1.5px solid #333;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 8px 30px;
+    transition: 0.5s;
+}
+
+.content-header button:hover {
+    background-color: #333;
+    border: 3px solid #f9f9f9;
+    font-size: 18px;
+    width: 130px
+}
+.content-header button:hover > a {
+	color: white;
+}
+
+button a{
+    color: #333;
+    text-decoration: none;
+}
+
+
+
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+}
