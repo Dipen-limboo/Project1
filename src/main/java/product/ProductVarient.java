@@ -6,7 +6,11 @@ public class ProductVarient{
     private String color;
     private String size;
 
-    public int getVariantId() {
+    public ProductVarient(String color2, String size) {
+		this.color = color2;
+		this.size = size;
+	}
+	public int getVariantId() {
         return variantId;
     }
     public void setVariantId(int variantId) {

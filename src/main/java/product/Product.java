@@ -1,5 +1,6 @@
 package product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Product {
@@ -69,6 +70,15 @@ public class Product {
 	public void setVariants(List<ProductVarient> variants) {
 	        this.list = variants;
 	    }
-	
+	public String[] getSelectedColors() {
+	    List<String> selectedColors = new ArrayList<>();
+	    for (ProductVarient variant : list) {
+	        if (variant.getColor() != null) {
+	            selectedColors.add(variant.getColor());
+	        }
+	    }
+	    return selectedColors.toArray(new String[0]);
+	}
+
 	
 }

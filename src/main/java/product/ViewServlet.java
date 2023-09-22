@@ -33,8 +33,8 @@ public class ViewServlet extends HttpServlet {
             // Retrieve products and their variants using a SQL JOIN
             String sql = "SELECT p.product_id, p.product_name, p.product_image, p.product_price, " +
                     "p.product_keyword, p.product_description, " +
-                    "GROUP_CONCAT(DISTINCT pv.color ORDER BY pv.v_id SEPARATOR ', ') AS colors, " +
-                    "GROUP_CONCAT(DISTINCT pv.size ORDER BY pv.v_id SEPARATOR ', ') AS sizes " +
+                    "GROUP_CONCAT(DISTINCT pv.color ORDER BY pv.v_id SEPARATOR ', ') AS color, " +
+                    "GROUP_CONCAT(DISTINCT pv.size ORDER BY pv.v_id SEPARATOR ', ') AS size " +
                     "FROM products p " +
                     "INNER JOIN product_variants pv ON p.product_id = pv.product_id " +
                     "GROUP BY p.product_id";
@@ -60,9 +60,9 @@ public class ViewServlet extends HttpServlet {
                     currentProductId = productId;
                 }
 
-                ProductVarient productVariant = new ProductVarient();
-                productVariant.setColor(rs.getString("colors"));
-                productVariant.setSize(rs.getString("sizes"));
+                ProductVarient productVariant = new ProductVarient("color", "size");// 
+                productVariant.setColor(rs.getString("color"));
+                productVariant.setSize(rs.getString("size"));
 
                 currentProduct.getVariants().add(productVariant);
             }
