@@ -34,21 +34,19 @@ nav li a {
 }
 
 main {
-    padding: 2rem;
+    min-height:85vh;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 /* Front-end styles */
 .product {
-    min-height: 55vh;
+    min-height: 40vh;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
-    padding: 1rem;
     text-align: center;
-    margin: 1rem;
-    max-width: 300px;
+    width: 200px;
 }
 
 .product img {
@@ -96,11 +94,13 @@ ul li {
     margin-bottom: 0.5rem;
 }
 
-footer {
+.footer {
+
     background-color: #333;
     color: white;
     text-align: center;
     padding: 0.5rem;
+    
 }
 
 

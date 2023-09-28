@@ -53,9 +53,8 @@
         		%>
     </form>
 </section>
-<footer>
-    <p>&copy; 2023 eCommerce Admin Panel</p>
-</footer>
+<jsp:include page="./Footer/footer.jsp"></jsp:include>
+
 <script>
     const imageInput = document.getElementById("product_image");
     const imagePreview = document.getElementById("image_preview");

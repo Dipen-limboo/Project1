@@ -8,17 +8,8 @@
 <link rel="stylesheet" href="./CSS/styles.css">
 </head>
 <body>
-<header>
-        <h1>Admin Panel</h1>
-        <nav>
-            <ul>
-                <li><a href="./admin.jsp">Dashboard</a></li>
-                <li><a href="ViewServlet">Products</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Users</a></li>
-            </ul>
-        </nav>
-    </header>
+<jsp:include page="./Header/header.jsp"></jsp:include>
+
 <section class= container>
 	<form action = "add" method="post" enctype="multipart/form-data"> 
 	<h2>Add Products</h2> <br>
@@ -52,9 +43,7 @@
 	<button type="submit">Add Product</button>
 	</form>
 </section>
-<footer>
-        <p>&copy; 2023 eCommerce Admin Panel</p>
-    </footer>
+<jsp:include page="./Footer/footer.jsp"></jsp:include>
 <script>
         const imageInput = document.getElementById("product_image");
         const imagePreview = document.getElementById("image_preview");

@@ -11,18 +11,8 @@
 
 </head>
 <body>
-<header class="header">
- <h1>eCommerce Store</h1>
-        <nav>
-            <ul>
-                <li><a href="./products.jsp">Home</a></li>
-                <li><a href="./products.jsp">Products</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Cart</a></li>
-                <li><a href="#">__</a>
-            </ul>
-        </nav>
-</header>
+<jsp:include page="./Header/userHeader.jsp"></jsp:include>
+
 <section class="login-form">
    <div class="login-Container">
         <div class="content">
@@ -46,7 +36,7 @@
                 
                 <label >Email</label><br>
                 <input type="text" placeholder="Enter your email" name="email" required><br>
-                <br>
+            
                 <label >Password</label><br>
                 <input type="password" placeholder="Enter your password" name="psw" required><br>
               
@@ -59,9 +49,8 @@
     </div>
    </div>
 </section>
-<footer>
-        <p>&copy; 2023 eCommerce Store</p>
-    </footer>
+<jsp:include page="./Footer/footer.jsp"></jsp:include>
+
 
 </body>
 </html>

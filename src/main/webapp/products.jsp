@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="product.Product" %>
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,39 +11,27 @@
     <link rel="stylesheet" href="./CSS/styles.css">
 </head>
 <body>
-    <header>
-        <h1>eCommerce Store</h1>
-        <nav>
-            <ul>
-            
-                <li><a href="./products.jsp">Home</a></li>
-                <li><a href="./products.jsp">Products</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Cart</a></li>
-                <li><a href="./login.jsp">__</a></li>
-            </ul>
-        </nav>
-    </header>
+    <jsp:include page="./Header/userHeader.jsp"></jsp:include>
     <main>
-        <section class="product">
-            <img src="product1.jpg" alt="Product 1">
-            <h2>Product 1</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <span class="price">$19.99</span>
-            <button>Add to Cart</button>
-        </section>
-        <section class="product">
-            <img src="product2.jpg" alt="Product 2">
-            <h2>Product 2</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <span class="price">$24.99</span>
-            <button>Add to Cart</button>
-        </section>
-        <!-- Add more product sections here -->
+        <%
+       		request.getRequestDispatcher("/display").include(request, response);
+            List<Product> productList = (List<Product>) request.getAttribute("productList");
+
+            if (productList != null && !productList.isEmpty()) {
+                for (Product product : productList) {
+        %>
+       <a href = "show?product_id=<%= product.getProductID() %>" style = "text-decoration: none; color: #333"> 
+       <section class="product" id= "product">  
+            <img src="<%= product.getProductImage() %>" alt="Product 1">
+            <h2 style="text-align: left; color: #333; text-decoration: underline; font-size:18px"><%= product.getProductName() %></h2>
+			
+            <p class="price" style="text-align: left; color: #333; font-size: 15px" >Price: Rs <%= product.getProductPrice() %> /-</p>
+        </section> </a>
+        <%
+                }
+            } 
+            %>
     </main>
-    <footer>
-        <p>&copy; 2023 eCommerce Store</p>
-    </footer>
+<jsp:include page="./Footer/footer.jsp"></jsp:include>
 </body>
 </html>
-    

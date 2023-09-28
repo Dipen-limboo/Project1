@@ -16,6 +16,8 @@
                 <li><a href="ViewServlet">Products</a></li>
                 <li><a href="#">Orders</a></li>
                 <li><a href="#">Users</a></li>
+                <li><a href="./products.jsp">Logout</a></li>
+                
             </ul>
         </nav>
     </header>

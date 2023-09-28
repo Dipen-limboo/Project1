@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="../CSS/styles.css">
 </head>
 <body>
-    <footer>
-        <p>&copy; 2023 eCommerce Admin Panel</p>
+    <footer class="footer" style="height: 3rem">
+        <p style="padding:10px;">&copy; 2023 Dipen Limbu</p>
     </footer>
 </body>
 </html>

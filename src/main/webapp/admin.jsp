@@ -15,8 +15,8 @@
             <h2>Product Management</h2>
             <ul>
                 <li><a href="./addProduct.jsp" style="color: #333; text-decoration: none">Add Product</a></li>
-                <li><a href="EditServlet" style="color: #333; text-decoration: none">Edit Product</a></li>
-                <li><a href="./deleteProduct.jsp" style="color: #333; text-decoration: none">Delete Product</a></li>
+                <li><a href="ViewServlet" style="color: #333; text-decoration: none">Edit Product</a></li>
+                <li><a href="ViewServlet" style="color: #333; text-decoration: none">Delete Product</a></li>
             </ul>
         </section>
         <section class="order-management">
