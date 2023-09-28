@@ -6,10 +6,10 @@ public class ProductVarient{
     private String color;
     private String size;
 
-    public ProductVarient(String color2, String size) {
-		this.color = color2;
-		this.size = size;
-	}
+//    public ProductVarient(String color2, String size) {
+//		this.color = color2;
+//		this.size = size;
+//	}
 	public int getVariantId() {
         return variantId;
     }
@@ -36,5 +36,10 @@ public class ProductVarient{
     }
     public void setSize(String size) {
     	this.size = size;
+    }
+    
+    
+    public String toString() {
+    	return color + ""+ size;
     }
 }

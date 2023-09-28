@@ -1,7 +1,13 @@
 package product;
 
 import java.io.IOException;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,14 +21,48 @@ public class EditServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.setContentType("html/text");
- 
-       int id = Integer.parseInt(request.getParameter("product_id"));
-       Product pr = ProductDao.editProduct(id);
-      
-       request.setAttribute("edit", pr);
-       
-       request.getRequestDispatcher("./editProduct.jsp").forward(request, response);
+        Connection conn = null;
+        response.setContentType("text/html;charset=UTF-8");
 
-          }
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false", "root", "0564");
+
+            int productId = Integer.parseInt(request.getParameter("product_id"));
+
+            String productQuery = "SELECT * FROM products WHERE product_id=?";
+            PreparedStatement productStatement = conn.prepareStatement(productQuery);
+            productStatement.setInt(1, productId);
+            ResultSet productResultSet = productStatement.executeQuery();
+
+            Product product = null;
+
+            if (productResultSet.next()) {
+                product = new Product();
+                product.setProductID(productId);
+                product.setProductName(productResultSet.getString("product_name"));
+                product.setProductImage(productResultSet.getString("product_image"));
+                product.setProductPrice(productResultSet.getDouble("product_price"));
+                product.setProductKeyword(productResultSet.getString("product_keyword"));
+                product.setProductDescription(productResultSet.getString("product_description"));
+                product.setColor(productResultSet.getString("color"));
+                product.setSize(productResultSet.getString("size"));
+            }
+
+            
+
+            request.setAttribute("product", product);
+            request.getRequestDispatcher("/editProduct.jsp").forward(request, response);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

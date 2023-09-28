@@ -37,19 +37,8 @@
             <td><%= product.getProductPrice() %></td>
             <td><%= product.getProductKeyword() %></td>
             <td><%= product.getProductDescription() %></td>
-            <td>
-        	      <% for (ProductVarient variant : product.getVariants()) { %>
-                    <span> <%= variant.getColor() %></span>
-                   <% } %>
-                 
-                </td>
-                <td>
-
-                        <% for (ProductVarient variant : product.getVariants()) { %>
-                            <span><%= variant.getSize() %></span>
-                        <% } %>
-
-                </td>
+            <td><%= product.getColor() %></td>
+            <td><%= product.getSize() %></td>
             <td><a href='EditServlet?product_id=<%= product.getProductID() %>' style="color: black; text-decoration: none">Edit</a></td>
             <td><a href='DeleteServlet?product_id=<%= product.getProductID() %>' style="color: black; text-decoration: none">Delete</a></td>
         </tr>

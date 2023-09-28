@@ -31,41 +31,29 @@ public class ViewServlet extends HttpServlet {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false", "root", "0564");
 
             // Retrieve products and their variants using a SQL JOIN
-            String sql = "SELECT p.product_id, p.product_name, p.product_image, p.product_price, " +
-                    "p.product_keyword, p.product_description, " +
-                    "GROUP_CONCAT(DISTINCT pv.color ORDER BY pv.v_id SEPARATOR ', ') AS color, " +
-                    "GROUP_CONCAT(DISTINCT pv.size ORDER BY pv.v_id SEPARATOR ', ') AS size " +
-                    "FROM products p " +
-                    "INNER JOIN product_variants pv ON p.product_id = pv.product_id " +
-                    "GROUP BY p.product_id";
+            String sql = "select * from products";
+ 
+                    
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
-            int currentProductId = -1;
             Product currentProduct = null;
 
             while (rs.next()) {
-                int productId = rs.getInt("product_id");
-
-                if (productId != currentProductId) {
+             
                     currentProduct = new Product();
-                    currentProduct.setProductID(productId);
+                    currentProduct.setProductID(rs.getInt(1));
                     currentProduct.setProductName(rs.getString("product_name"));
                     currentProduct.setProductImage(rs.getString("product_image"));
                     currentProduct.setProductPrice(rs.getDouble("product_price"));
                     currentProduct.setProductKeyword(rs.getString("product_keyword"));
                     currentProduct.setProductDescription(rs.getString("product_description"));
-                    currentProduct.setVariants(new ArrayList<>());
+                    currentProduct.setColor(rs.getString("color"));
+                    currentProduct.setSize(rs.getString("size"));
                     productList.add(currentProduct);
-                    currentProductId = productId;
+                   
                 }
 
-                ProductVarient productVariant = new ProductVarient("color", "size");// 
-                productVariant.setColor(rs.getString("color"));
-                productVariant.setSize(rs.getString("size"));
 
-                currentProduct.getVariants().add(productVariant);
-            }
 
             request.setAttribute("productList", productList);
             request.getRequestDispatcher("./View.jsp").forward(request, response);

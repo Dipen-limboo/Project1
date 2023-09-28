@@ -37,19 +37,11 @@
 	<textarea  name="product_description" rows="4"></textarea> <br><br>
 	
 	<label for="color">Color:</label>  <br>        
-    <input type="checkbox" id="red" name="color" value="red"> Red <br>
-    <input type="checkbox" id="blue" name="color" value="blue"> BLue <br>
-    <input type="checkbox" id="green" name="color" value="green"> Green <br>
-    <input type="checkbox" id="yellow" name="color" value="yellow"> Yellow <br>
-    <input type="checkbox" id="yellow" name="color" value="Black"> Black <br><br>
+  	<input type="text" name="color">
 	
 	
 	<label for="size">Size:</label>    <br>        
-    <input type="checkbox" id="small" name="size" value="S"> Small <br>
-    <input type="checkbox" id="medium" name="size" value="M"> Medium <br>
-    <input type="checkbox" id="large" name="size" value="X"> Large <br>
-    <input type="checkbox" id="large" name="size" value="XL"> Extra Large <br>
-    <input type="checkbox" id="large" name="size" value="XXL"> Double Extra Large
+    <input type="text" name="size">
 	</div>
 	<div class= "right-side">
 	<label for="product_image">Product Image:</label><br>

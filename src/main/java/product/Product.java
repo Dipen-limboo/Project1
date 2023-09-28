@@ -7,7 +7,9 @@ public class Product {
 	int product_id;
 	String product_name, product_image, product_keyword, product_description;
 	double product_price;
-	private List <ProductVarient> list;
+    private String color;
+    private String size;
+    
 	
 	
 	
@@ -63,22 +65,19 @@ public class Product {
 		this.product_description = description;
 	}
 	
-	public List<ProductVarient> getVariants() {
-	        return list;
-	    }
+	public String getColor() {
+        return color;
+    }
+    public void setColor(String color) {
+        this.color = color;
+    }
 
-	public void setVariants(List<ProductVarient> variants) {
-	        this.list = variants;
-	    }
-	public String[] getSelectedColors() {
-	    List<String> selectedColors = new ArrayList<>();
-	    for (ProductVarient variant : list) {
-	        if (variant.getColor() != null) {
-	            selectedColors.add(variant.getColor());
-	        }
-	    }
-	    return selectedColors.toArray(new String[0]);
-	}
+    public String getSize() {
+        return size;
+    }
+    public void setSize(String size) {
+    	this.size = size;
+    }
 
 	
 }

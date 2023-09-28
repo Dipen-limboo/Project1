@@ -31,8 +31,8 @@ public class AddProduct extends HttpServlet {
         double pprice = Double.parseDouble(request.getParameter("product_price"));
         String pkeyword = request.getParameter("product_keyword");
         String pdescription = request.getParameter("product_description");
-        String[] colors = request.getParameterValues("color");
-        String[] sizes = request.getParameterValues("size");
+        String colors = request.getParameter("color");
+        String sizes = request.getParameter("size");
         Connection conn = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -40,41 +40,17 @@ public class AddProduct extends HttpServlet {
 
             // Insert into the products table
             PreparedStatement ps = conn.prepareStatement(
-                    "insert into products (product_name, product_image, product_price, product_keyword, product_description) values (?, ?, ?, ?, ?)",
-                    PreparedStatement.RETURN_GENERATED_KEYS);
+                    "insert into products (product_name, product_image, product_price, product_keyword, product_description, color, size) values (?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, pname);
             ps.setString(2, pimage);
             ps.setDouble(3, pprice);
             ps.setString(4, pkeyword);
             ps.setString(5, pdescription);
+            ps.setString(6, colors);
+            ps.setString(7, sizes);
 
             int status = ps.executeUpdate();
             if (status > 0) {
-                ResultSet rs = ps.getGeneratedKeys();
-                if (rs.next()) {
-                    int product_id = rs.getInt(1);
-
-                    // Insert into the product_variants table
-                    if (colors != null) {
-                        for (String color : colors) {
-                            PreparedStatement prs = conn.prepareStatement(
-                                    "insert into product_variants (product_id, color) values (?, ?)");
-                            prs.setInt(1, product_id);
-                            prs.setString(2, color);
-                            prs.executeUpdate();
-                        }
-                    }
-
-                    if (sizes != null) {
-                        for (String size : sizes) {
-                            PreparedStatement prs = conn.prepareStatement(
-                                    "insert into product_variants (product_id, size) values (?, ?)");
-                            prs.setInt(1, product_id);
-                            prs.setString(2, size);
-                            prs.executeUpdate();
-                        }
-                    }
-                }
                 out.print("Successfully Added!");
                 response.sendRedirect("./admin.jsp");
             } else {
