@@ -37,13 +37,6 @@ public class loginServlet extends HttpServlet {
 	            session.setAttribute("user", usr);
 	            session.setAttribute("userId", userId);
 
-//
-//	            String pagename = (String) session.getAttribute("currentpage");
-//	            if (pagename == null) {
-//	                response.sendRedirect("./products.jsp");
-//	            } else {
-//	            response.sendRedirect(pagename);
-//	            }
 	            int pagename = (int) session.getAttribute("page");
 	            if(pagename > 0) {
 	            	response.sendRedirect("./show?product_id="+pagename);

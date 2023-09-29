@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../CSS/styles.css">
 </head>
 <body>
-	<header>
+	<header class = "heads">
         <h1>Admin Panel</h1>
         <nav>
             <ul>
@@ -16,7 +16,7 @@
                 <li><a href="ViewServlet">Products</a></li>
                 <li><a href="#">Orders</a></li>
                 <li><a href="#">Users</a></li>
-                <li><a href="./products.jsp">Logout</a></li>
+                <li><a href="logOut">Logout</a></li>
                 
             </ul>
         </nav>
