@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="Controller.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,13 @@
                 <li><a href="ViewServlet">Products</a></li>
                 <li><a href="#">Orders</a></li>
                 <li><a href="#">Users</a></li>
-                <li><a href="logOut">Logout</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Profile</a>
+                    <div class="dropdown-content">
+                        <a href="logOut">Logout</a>
+                    </div>
+                </li>
+               
                 
             </ul>
         </nav>
