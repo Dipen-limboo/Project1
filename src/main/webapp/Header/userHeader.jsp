@@ -16,7 +16,7 @@
                 <li><a href="./products.jsp">Products</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Cart</a></li>
-				<li><a href="login.jsp?origin=product:showProduct">Login</a></li>
+				<li><a href="login.jsp">Login</a></li>
             </ul>
         </nav>
     </header>

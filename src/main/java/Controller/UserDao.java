@@ -82,5 +82,27 @@ public class UserDao {
 	    }
 	    return isAdmin;
 	}
+	
+	 public static int getUserIdByEmail(String email) {
+	        int userId = -1; 
+	        
+	        try {
+	            Connection conn = UserDao.getConnection();
+	            PreparedStatement ps = conn.prepareStatement("SELECT id FROM users WHERE email = ?");
+	            ps.setString(1, email);
+	            ResultSet rs = ps.executeQuery();
+	            
+	            if (rs.next()) {
+	                userId = rs.getInt("id");
+	            }
+	            
+	            conn.close();
+	        } catch (Exception e) {
+	            System.out.print("message" + e.getMessage());
+	            e.printStackTrace();
+	        }
+	        
+	        return userId;
+	    }
 
 }

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="product.Product" %>
 <%@ page import="java.util.List" %>
-
+<%
+	String pagename =  "products.jsp";
+	session.setAttribute("currentpage", pagename);
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
