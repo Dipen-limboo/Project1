@@ -7,7 +7,15 @@ public class Product {
 	int product_id;
 	String product_name, product_image, product_keyword, product_description;
 	double product_price;
-    private String color;
+	int product_quantity;
+	
+    public int getProductQuantity() {
+		return product_quantity;
+	}
+	public void setProductQuantity(int product_quantity) {
+		this.product_quantity = product_quantity;
+	}
+	private String color;
     private String size;
     
 	

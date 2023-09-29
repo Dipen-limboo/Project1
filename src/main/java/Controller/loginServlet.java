@@ -2,13 +2,13 @@ package Controller;
 
 import java.io.IOException;
 
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/login")
@@ -27,8 +27,16 @@ public class loginServlet extends HttpServlet {
 		usr.setPassword(u_password);
 		
 		boolean userExists = UserDao.check(usr);
+		
 		if (userExists == true) {
-			response.sendRedirect("products.jsp");
+			boolean isAdmin = UserDao.isAdmin(usr);
+			if( isAdmin == true) {
+				response.sendRedirect("./admin.jsp");
+			} else {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", usr);
+				response.sendRedirect("./products.jsp");
+			}
 		} else {
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);

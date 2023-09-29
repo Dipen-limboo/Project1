@@ -21,6 +21,9 @@
 	<label>Price:</label>
     <input type="number" name="product_price" required><br><br>
     
+    <label>Quantity:</label>
+    <input type="number" name="product_quantity" required><br><br>
+    
 	<label >Keywords:</label>
 	<input type="text" id="product_keywords" name="product_keyword"> <br><br>
 	

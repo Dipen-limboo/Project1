@@ -32,8 +32,14 @@ nav li a {
     color: white;
     text-decoration: none;
 }
-
 main {
+	 min-height:85vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.frm {
     min-height:85vh;
     display: flex;
     flex-wrap: wrap;

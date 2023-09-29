@@ -49,6 +49,7 @@ public class ViewServlet extends HttpServlet {
                     currentProduct.setProductDescription(rs.getString("product_description"));
                     currentProduct.setColor(rs.getString("color"));
                     currentProduct.setSize(rs.getString("size"));
+                    currentProduct.setProductQuantity(rs.getInt("product_quantity"));
                     productList.add(currentProduct);
                    
                 }

@@ -14,13 +14,22 @@
 <body>
 
 <jsp:include page="./Header/userHeader.jsp"></jsp:include>
+
+    
+
 <section class="login-form">
 
    <div class="login-Container" style="height: 500px">
     <div class="login-content">
         <form method='post' action="login" class="register_form"><br><br>
+         <% 
+    	String source = request.getParameter("source");
+    	if (source != null && source.equals("cartServlet")) {
+    	%>
+        <p style="text-align: center; font-size: 20px; font-weight: bold">(You need to log in to access your cart.)</p>
+    		<% } %>
             <h4>Log In</h4> <hr> <br>
-            <div class="container">
+            <div class="container" style="margin-left: 2rem">
                 <label>Email:</label><br>
                 <input type="text" placeholder="Enter Email" name="email" required><br>
             
@@ -31,7 +40,7 @@
                 </div>
                 <button type="submit">Login</button>
             </div><br><br>
-            <p>Don't have an account? <span><a href="./register.jsp">Register Now</a></span></p>
+            <p style="margin-left: 2rem">Don't have an account? <span><a href="./register.jsp">Register Now</a></span></p>
         </form>
     </div>
     <div class="content">

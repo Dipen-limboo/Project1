@@ -12,10 +12,11 @@
 </head>
 <body>
     <jsp:include page="./Header/userHeader.jsp"></jsp:include>
-    <main>
+    <form class="frm" action="cartServlet" method="post">
         <div class="product" style="width: 500px; height: 450px; text-align: left; margin: 1rem; padding: 2rem">
             <%
                 List<Product> productList = (List<Product>) request.getAttribute("productList");
+            
                 if (productList != null && !productList.isEmpty()) {
                     Product product = productList.get(0); // Assuming there's only one product in the list
             %>
@@ -25,6 +26,8 @@
             <p style=" padding:5px" >Color:<span style="font-style:italic"> <%= product.getColor() %></span></p>
             <p style=" padding:5px" >Size: <span style="font-style:italic"><%= product.getSize() %></span></p>
             <p style="font-weight: bolder; padding: 5px">Price: Rs <%= product.getProductPrice() %> /-</p>
+            
+            <p style=" padding:5px"> Quantity: <input type="number" name ="quantity"style="width: 80px; padding-left: 5px;" value="1"  ></p>
             <button id="addToCartBtn">Add to Cart</button>
             <%
                 } else {
@@ -34,8 +37,7 @@
                 }
             %>
         </div>
-    </main>
-<jsp:include page="./Footer/footer.jsp"></jsp:include>
-
+    </form>
+    <jsp:include page="./Footer/footer.jsp"></jsp:include>
 </body>
 </html>

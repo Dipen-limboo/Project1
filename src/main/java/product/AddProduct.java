@@ -29,6 +29,7 @@ public class AddProduct extends HttpServlet {
         String pimage = request.getParameter("product_image");
        
         double pprice = Double.parseDouble(request.getParameter("product_price"));
+        int quantity = Integer.parseInt(request.getParameter("product_quantity"));
         String pkeyword = request.getParameter("product_keyword");
         String pdescription = request.getParameter("product_description");
         String colors = request.getParameter("color");
@@ -40,7 +41,7 @@ public class AddProduct extends HttpServlet {
 
             // Insert into the products table
             PreparedStatement ps = conn.prepareStatement(
-                    "insert into products (product_name, product_image, product_price, product_keyword, product_description, color, size) values (?, ?, ?, ?, ?, ?, ?)");
+                    "insert into products (product_name, product_image, product_price, product_keyword, product_description, color, size, product_quantity) values (?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, pname);
             ps.setString(2, pimage);
             ps.setDouble(3, pprice);
@@ -48,6 +49,7 @@ public class AddProduct extends HttpServlet {
             ps.setString(5, pdescription);
             ps.setString(6, colors);
             ps.setString(7, sizes);
+            ps.setInt(8, quantity);
 
             int status = ps.executeUpdate();
             if (status > 0) {

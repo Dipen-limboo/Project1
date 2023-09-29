@@ -34,6 +34,7 @@
             <td><%= product.getProductName() %></td>
             <td><img src="<%= product.getProductImage() %>" alt="Product-image" width="100%"></td>
             <td><%= product.getProductPrice() %></td>
+            <td><%= product.getProductQuantity() %> </td>
             <td><%= product.getProductKeyword() %></td>
             <td><%= product.getProductDescription() %></td>
             <td><%= product.getColor() %></td>

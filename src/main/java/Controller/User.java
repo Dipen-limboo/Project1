@@ -3,7 +3,14 @@ package Controller;
 public class User {
 	private int id;
 	private String fname, lname, email, psw;
+	private String role;
 	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	//get and set of id
 	public int getId() {
 		return id;

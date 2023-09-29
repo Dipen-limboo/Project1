@@ -60,5 +60,27 @@ public class UserDao {
 	    }
 	    return userExists;
 	}
+	
+	public static boolean isAdmin(User usr) {
+	    boolean isAdmin = false;
+	    try {
+	        Connection conn = UserDao.getConnection();
+	        PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) AS user_count FROM users WHERE email = ? AND psw = ? AND role = 'admin'");
+	        ps.setString(1, usr.getEmail());
+	        ps.setString(2, usr.getPassword());
+	        ResultSet rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            int userCount = rs.getInt("user_count");
+	            // If userCount is greater than 0, the user has the "admin" role
+	            isAdmin = (userCount > 0);
+	        }
+	        conn.close();
+	    } catch (Exception e) {
+	        System.out.print("message" + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return isAdmin;
+	}
 
 }

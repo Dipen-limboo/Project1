@@ -23,6 +23,7 @@ public class UpdateServlet extends HttpServlet {
 		String name = request.getParameter("product_name");
 		String image = request.getParameter("product_image");
 		double price = Double.parseDouble(request.getParameter("product_price"));
+		int quantity =  Integer.parseInt(request.getParameter("product_quantity"));
 		String keywords = request.getParameter("product_keyword");
 		String description = request.getParameter("product_description");
 		String colors = request.getParameter("color");
@@ -34,6 +35,7 @@ public class UpdateServlet extends HttpServlet {
 		pr.setProductName(name);
 		pr.setProductImage(image);
 		pr.setProductPrice(price);
+		pr.setProductQuantity(quantity);
 		pr.setProductKeyword(keywords);
 		pr.setProductDescription(description);
 		pr.setColor(colors);
@@ -46,7 +48,7 @@ public class UpdateServlet extends HttpServlet {
 		try {
 			 Class.forName("com.mysql.cj.jdbc.Driver");
 	         conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false", "root", "0564");
-	         ps = conn.prepareStatement("update products set product_name=? , product_image=?, product_price = ?, product_keyword = ?, product_description = ?, color = ?, size = ? where product_id= ?");
+	         ps = conn.prepareStatement("update products set product_name=? , product_image=?, product_price = ?, product_keyword = ?, product_description = ?, color = ?, size = ?, product_quantity = ? where product_id= ?");
 	         ps.setString(1, pr.getProductName());
 	         ps.setString(2, pr.getProductImage());
 	         ps.setDouble(3, pr.getProductPrice());
@@ -54,6 +56,7 @@ public class UpdateServlet extends HttpServlet {
 	         ps.setString(5, pr.getProductDescription());
 	         ps.setString(6, pr.getColor());
 	         ps.setString(7, pr.getSize());
+	         ps.setInt(8, pr.getProductQuantity());
 	         ps.setInt(8, pr.getProductID());
 	         int status = ps.executeUpdate();
 	         if (status > 0) {

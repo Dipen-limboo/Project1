@@ -43,6 +43,7 @@ public class EditServlet extends HttpServlet {
                 product.setProductName(productResultSet.getString("product_name"));
                 product.setProductImage(productResultSet.getString("product_image"));
                 product.setProductPrice(productResultSet.getDouble("product_price"));
+                product.setProductQuantity(productResultSet.getInt("product_quantity"));
                 product.setProductKeyword(productResultSet.getString("product_keyword"));
                 product.setProductDescription(productResultSet.getString("product_description"));
                 product.setColor(productResultSet.getString("color"));

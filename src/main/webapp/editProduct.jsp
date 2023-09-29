@@ -25,6 +25,9 @@
 
                 <label>Price:</label>
                 <input type="number" name="product_price" value="<%= product.getProductPrice() %>"><br><br>
+                
+                 <label>Quantity:</label>
+                <input type="number" name="product_quantity" value="<%= product.getProductQuantity() %>"><br><br>
 
                 <label>Keywords:</label>
                 <input type="text" id="product_keywords" name="product_keyword"
