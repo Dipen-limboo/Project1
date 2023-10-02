@@ -7,8 +7,22 @@ public class Cart {
 	private int quantity;
 	private double total_price;
 	private double product_price;
+	private String product_image;
+	private String product_name;
 	
 	
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+	public String getProductImage() {
+		return product_image;
+	}
+	public void setProductImage(String product_image) {
+		this.product_image = product_image;
+	}
 	public double getProduct_price() {
 		return product_price;
 	}
