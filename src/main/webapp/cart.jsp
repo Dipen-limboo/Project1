@@ -13,7 +13,8 @@
 <jsp:include page="./Header/userHeader.jsp"></jsp:include>
 	<section class="cart">
 		<h2>My Cart</h2>
-	<div class= "cart-section">
+	<div class= "cart-section"> 
+
 		<% 
 		List <Cart> list = (List<Cart>) request.getAttribute("cartList"); 
 			if (list != null){
@@ -41,7 +42,7 @@
 		
 		<td style="width: 100px"><%= cart.getProduct_price() %> </td>
 		
-		<td style="width: 100px"><%= cart.getQuantity() %> </td>
+		<td style="width: 100px"><a href='cartUpdate?cart_id= <%= cart.getCartId() %>'><input type="number"  name= "quantity"  value="<%= cart.getQuantity() %>" style="width: 100px;"> </a></td>
 	
 		<td style="width: 100px"><%= cart.getTotalPrice() %> </td>		
 			
@@ -57,6 +58,7 @@
 			<p style= "padding-top: 50px"> No Item Selected</p>
 			<% }%>
 		</table>
+
 	</div>
 	<div class="cart-foot"> 
 	<a href="./products.jsp" style="color: white; text-decoration: none"> <button>CONTINUE SHOPPING </button></a>
