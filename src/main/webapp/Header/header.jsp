@@ -10,7 +10,7 @@
 </head>
 <body>
 	<header class = "heads">
-        <h1>Admin Panel</h1>
+        <h1 style="font-size: 30px;">  Welcome To Admin Panel</h1>
         <nav>
             <ul>
                 <li><a href="admin.jsp">Dashboard</a></li>
@@ -23,8 +23,6 @@
                         <a href="logOut">Logout</a>
                     </div>
                 </li>
-               
-                
             </ul>
         </nav>
     </header>

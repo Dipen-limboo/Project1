@@ -53,7 +53,7 @@ public class CartServlet extends HttpServlet {
                 }
 
                 double total = price * quantity;
-
+  
                 PreparedStatement ps = conn.prepareStatement(
                         "insert into carts (user_id, product_id, quantity, total_price ) values (?, ?, ?, ?)");
                 ps.setInt(1, userID);
@@ -73,7 +73,8 @@ public class CartServlet extends HttpServlet {
                     double sumtotal = 0.0;
                     while (res.next()) {
                         Cart cart = new Cart();
-                        cart.setUser_id(res.getInt("user_id"));
+                        cart.setCartId(res.getInt("cart_id"));
+                        cart.setUser_id(res.getInt(userID));
                         cart.setProduct_id(res.getInt("product_id"));
                         cart.setQuantity(res.getInt("quantity"));
                         cart.setTotalPrice(res.getDouble("total_price"));

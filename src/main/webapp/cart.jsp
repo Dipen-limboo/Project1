@@ -33,13 +33,19 @@
 				for (Cart cart: list){
 					
 		%>
-		<input type="hidden" name="userID" value="<%= cart.getCartId() %>">		
+		<input type="hidden" name="cart_id" value="<%= cart.getCartId() %>">	
+		
 		<td style="height: 100px; width: 100px"><%= cart.getProductImage() %></td>
+		
 		<td style="width: 200px"><%= cart.getProduct_name() %> </td>
+		
 		<td style="width: 100px"><%= cart.getProduct_price() %> </td>
+		
 		<td style="width: 100px"><%= cart.getQuantity() %> </td>
+	
 		<td style="width: 100px"><%= cart.getTotalPrice() %> </td>		
-		<td style="width: 100px"> <a href="RemoveCart?cart_id=<%= cart.getCartId() %>" style="color: black; text-decoration: none"> Remove </a></td>
+			
+		<td style="width: 100px"> <a href='RemoveCart?cart_id=	<%= cart.getCartId() %>	' style="color: black; text-decoration: none"> Remove </a></td>
 		</tr>
 		<% } %>
 		<tr>
