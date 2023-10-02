@@ -16,7 +16,7 @@
                 <li><a href="./products.jsp">Home</a></li>
                 <li><a href="./products.jsp">Products</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="./cart.jsp">Cart</a></li>
+                <li><a href="showCart">Cart</a></li>
                 <%
                     User user = (User) session.getAttribute("user");
 

@@ -30,10 +30,10 @@ public class RemoveCart extends HttpServlet {
 			int status = ps.executeUpdate();
 			if(status > 0) {
 				out.print("Deleted succesfully");
-				response.sendRedirect("cartServlet");
+				response.sendRedirect("showCart");
 			} else {
 				out.print("Failed To Delete");
-				response.sendRedirect("cartServlet");
+				response.sendRedirect("showCart");
 			}
 		} catch (Exception e) {
 			System.out.println("message" +e.getMessage());
