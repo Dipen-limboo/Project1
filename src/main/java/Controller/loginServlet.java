@@ -37,11 +37,11 @@ public class loginServlet extends HttpServlet {
 	            session.setAttribute("user", usr);
 	            session.setAttribute("userId", userId);
 
-	            int pagename = (int) session.getAttribute("page");
-	            if(pagename > 0) {
-	            	response.sendRedirect("./show?product_id="+pagename);
+	            Integer pagename = (Integer) session.getAttribute("page");
+	            if (pagename != null && pagename > 0) {
+	                response.sendRedirect("./show?product_id=" + pagename);
 	            } else {
-	            	response.sendRedirect("./products.jsp");
+	                response.sendRedirect("./products.jsp");
 	            }
 	        }
 	    } else {

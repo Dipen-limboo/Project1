@@ -57,7 +57,7 @@ public class UpdateServlet extends HttpServlet {
 	         ps.setString(6, pr.getColor());
 	         ps.setString(7, pr.getSize());
 	         ps.setInt(8, pr.getProductQuantity());
-	         ps.setInt(8, pr.getProductID());
+	         ps.setInt(9, pr.getProductID());
 	         int status = ps.executeUpdate();
 	         if (status > 0) {
 	        	 request.setAttribute("update", pr);
