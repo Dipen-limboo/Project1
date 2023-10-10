@@ -33,8 +33,8 @@
 		<% 
 				for (Cart cart: list){
 					
-		%>
-		<input type="hidden" name="cart_id" value="<%= cart.getCartId() %>">	
+		%>	
+		<input type="hidden" name ="user_id" value = <%=  cart.getUser_id() %>">
 		
 		<td style="width: 130px"><img src="data:image/jpeg;base64, <%= cart.getProductImage() %>" alt="Product-image" style = "height: 100px; width: 120px"></td>	
 			
@@ -51,7 +51,8 @@
 		<% } %>
 		<tr>
 		<td style="text-align: left; padding-left: 2rem; font-weight: bolder;" colspan= "6">Total: <span>Rs: <%= sumTotal %> /-</span> </td>
-		</tr>
+<%-- 		<input type="hidden" name = "total" value="<%= sumTotal %>">
+ --%>		</tr>
 		<% 	
 					
 			} else {%>
@@ -62,7 +63,8 @@
 	</div>
 	<div class="cart-foot"> 
 	<a href="./products.jsp" style="color: white; text-decoration: none"> <button>CONTINUE SHOPPING </button></a>
-	<a href="check"><button>CHECKOUT</button></a>
+	
+	<a href="check?user_id = <%= (Integer)session.getAttribute("userId") %>"><button>CHECKOUT</button></a>
 	</div>
 	</section>
 <jsp:include page="./Footer/footer.jsp"></jsp:include>

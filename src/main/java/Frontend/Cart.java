@@ -9,8 +9,28 @@ public class Cart {
 	private double product_price;
 	private String product_image;
 	private String product_name;
+	private String firstname;
+	private String lastname, email;
 	
 	
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getProduct_name() {
 		return product_name;
 	}

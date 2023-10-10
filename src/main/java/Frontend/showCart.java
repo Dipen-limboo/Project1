@@ -49,7 +49,7 @@ public class showCart extends HttpServlet {
 	         while (res.next()) {
 	             Cart cart = new Cart();
 	             cart.setCartId(res.getInt("cart_id"));
-	             cart.setUser_id(res.getInt(userID));
+	             cart.setUser_id(res.getInt("user_id"));
 	             cart.setProduct_id(res.getInt("product_id"));
 	             cart.setQuantity(res.getInt("quantity"));
 	             cart.setTotalPrice(res.getDouble("total_price"));

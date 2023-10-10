@@ -81,7 +81,7 @@ button {
 }
 
 /* Admin panel styles */
-section {
+.section {
     min-height: 55vh;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -91,7 +91,7 @@ section {
     width: 300px;
 }
 
-section h2 {
+.section h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
@@ -198,4 +198,29 @@ button {
     color: white;
 }
 
+/*order*/
+.order {
+	min-height: 85vh;
+	background-color: white;
+}
 
+.order .order_form {
+	width: 500px;
+	height: 500px;
+	background-color: #f9f9f9;
+	margin: auto;
+	text-align:left;
+	margin-top: 20px;
+	border: 1px solid #ddd;
+	border-radius: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+.order .order_form label, input {
+	margin-left: 20px;
+	padding: 5px;	
+	font-style: italic;
+}
+.order .order_form label span{
+	font-weight: bolder;
+	
+}

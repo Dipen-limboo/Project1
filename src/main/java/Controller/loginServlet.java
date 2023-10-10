@@ -38,6 +38,7 @@ public class loginServlet extends HttpServlet {
 	            session.setAttribute("user", usr);
 	            session.setAttribute("userId", userId);
 	            session.setAttribute("username", userName);
+	     
 
 	            Integer pagename = (Integer) session.getAttribute("page");
 	            if (pagename != null && pagename > 0) {
