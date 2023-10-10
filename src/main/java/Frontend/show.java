@@ -1,12 +1,16 @@
 package Frontend;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -42,7 +46,17 @@ public class show extends HttpServlet {
 	                product = new Product();
 	                product.setProductID(rs.getInt("product_id"));
 	                product.setProductName(rs.getString("product_name"));
-	                product.setProductImage(rs.getString("product_image"));
+	                Blob blob = rs.getBlob("product_image");
+    				InputStream ins = blob.getBinaryStream();
+                    ByteArrayOutputStream os = new ByteArrayOutputStream();
+                    byte [] byt = new byte[4096];
+                    int byteread = -1;
+                    while ((byteread = ins.read(byt))!= -1) {
+                    	os.write(byt, 0, byteread);
+                    }
+                    byte[] imageByte = os.toByteArray();
+                    String image = Base64.getEncoder().encodeToString(imageByte);
+                    product.setProductImage(image);
 	                product.setProductPrice(rs.getDouble("product_price"));
 	                product.setProductKeyword(rs.getString("product_keyword"));
 	                product.setProductDescription(rs.getString("product_description"));

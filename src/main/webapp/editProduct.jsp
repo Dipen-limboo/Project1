@@ -46,7 +46,7 @@
                 	<label for="product_image">Product Image:</label><br>
                 	<input type="file" id="product_image" name="product_image" accept="image/*"
                        value="<%= product.getProductImage() %>"><br>
-                	<img id="image_preview" src="<%= product.getProductImage() %>"
+                	<img id="image_preview" src="data:image/jpeg;base64, <%= product.getProductImage() %>"
                     	 alt="Product Image Preview" style="height: 350px; width: 300px">
             	</div>
         	</div>

@@ -1,11 +1,11 @@
 package product;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -14,8 +14,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
-@MultipartConfig
+@MultipartConfig(maxFileSize = 16177215)
 @WebServlet("/add")
 public class AddProduct extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -26,8 +27,13 @@ public class AddProduct extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String pname = request.getParameter("product_name");
-        String pimage = request.getParameter("product_image");
-       
+//        String pimage = request.getParameter("product_image");
+        InputStream ins = null;
+        Part file = request.getPart("product_image");
+        if (file != null) {
+        	ins = file.getInputStream();
+        }
+        
         double pprice = Double.parseDouble(request.getParameter("product_price"));
         int quantity = Integer.parseInt(request.getParameter("product_quantity"));
         String pkeyword = request.getParameter("product_keyword");
@@ -43,7 +49,10 @@ public class AddProduct extends HttpServlet {
             PreparedStatement ps = conn.prepareStatement(
                     "insert into products (product_name, product_image, product_price, product_keyword, product_description, color, size, product_quantity) values (?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, pname);
-            ps.setString(2, pimage);
+//            ps.setString(2, pimage);
+            if(file != null) {
+            	ps.setBlob(2, ins);
+            }
             ps.setDouble(3, pprice);
             ps.setString(4, pkeyword);
             ps.setString(5, pdescription);

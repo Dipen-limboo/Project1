@@ -24,12 +24,12 @@
                 for (Product product : productList) {
         %>
        <a href = "show?product_id=<%= product.getProductID() %>" style = "text-decoration: none; color: #333"> 
-       <section class="product" id= "product">  
-            <img src="<%= product.getProductImage() %>" alt="Product 1">
-            <h2 style="text-align: left; color: #333; text-decoration: underline; font-size:18px"><%= product.getProductName() %></h2>
+       <div class="product" id= "product" >  
+            <img src="data:image/jpeg;base64, <%= product.getProductImage() %>" alt="here is an image" style= "height: 150px; width: 100%">
+            <h2 style="text-align: left; color: #333; text-decoration: underline; font-size:12px"><%= product.getProductName() %></h2> <br>
 			
-            <p class="price" style="text-align: left; color: #333; font-size: 15px" >Price: Rs <%= product.getProductPrice() %> /-</p>
-        </section> </a>
+            <p class="price" style="text-align: left; color: #333; font-size: 11px" >Price: Rs <%= product.getProductPrice() %> /-</p>
+        </div> </a>
         <%
                 }
             } 

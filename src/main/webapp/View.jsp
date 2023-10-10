@@ -10,7 +10,7 @@
 </head>
 <body style="min-height: 100vh">
 <jsp:include page="./Header/header.jsp"></jsp:include>
-<section style="height: 80vh; width: 90%">
+<section style="min-height: 80vh; width: 90%">
     <table border="1" style="width: 100%">
         <tr>
             <th>Name</th>
@@ -33,7 +33,7 @@
         %>
         <tr>
             <td><%= product.getProductName() %></td>
-            <td><img src="<%= product.getProductImage() %>" alt="Product-image" width="100%"></td>
+            <td><img src="data:image/jpeg;base64, <%= product.getProductImage() %>" alt="Product-image" style = "height: 100px; width: 250px"></td>
             <td><%= product.getProductPrice() %></td>
             <td><%= product.getProductQuantity() %> </td>
             <td><%= product.getProductKeyword() %></td>

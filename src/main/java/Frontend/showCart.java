@@ -1,12 +1,16 @@
 package Frontend;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -50,7 +54,20 @@ public class showCart extends HttpServlet {
 	             cart.setQuantity(res.getInt("quantity"));
 	             cart.setTotalPrice(res.getDouble("total_price"));
 	             cart.setProduct_price(res.getInt("product_price"));
-	             cart.setProductImage(res.getString("product_image"));
+//	             cart.setProductImage(res.getString("product_image"));
+	            
+	             Blob blob = res.getBlob("product_image");
+	             InputStream ins = blob.getBinaryStream();
+                 ByteArrayOutputStream os = new ByteArrayOutputStream();
+                 byte [] byt = new byte[4096];
+                 int byteread = -1;
+                 while ((byteread = ins.read(byt))!= -1) {
+                 	os.write(byt, 0, byteread);
+                 }
+                 byte[] imageByte = os.toByteArray();
+                 String image = Base64.getEncoder().encodeToString(imageByte);
+                 
+                 cart.setProductImage(image);
 	             cart.setProduct_name(res.getString("product_name"));
 	             list.add(cart);
 	             sumtotal += cart.getTotalPrice();

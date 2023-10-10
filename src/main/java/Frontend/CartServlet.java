@@ -1,12 +1,16 @@
 package Frontend;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -41,15 +45,15 @@ public class CartServlet extends HttpServlet {
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false",
                         "root", "0564");
 
-                PreparedStatement pps = conn.prepareStatement("select product_price, product_image, product_name from products where product_id = ?");
+                PreparedStatement pps = conn.prepareStatement("select product_price from products where product_id = ?");
                 pps.setInt(1, productID);
 
                 ResultSet rs = pps.executeQuery();
                 double price = 0.00;
                 while (rs.next()) {
                     price = rs.getDouble("product_price");
-                    String image = rs.getString("product_image");
-                    String name = rs.getString("product_name");
+                    
+                   
                 }
 
                 double total = price * quantity;

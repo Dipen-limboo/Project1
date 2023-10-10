@@ -104,5 +104,24 @@ public class UserDao {
 	        
 	        return userId;
 	    }
-
+	 public static String getUsername(String email) {
+		 String username = null;
+		 try {
+			 Connection conn = UserDao.getConnection();
+			 PreparedStatement ps = conn.prepareStatement("select fname, lname from users where email = ?");
+			 ps.setString(1, email);
+			 ResultSet rs= ps.executeQuery();
+			 
+			 if (rs.next()) {
+				 String fname = rs.getString("fname");
+				 String lname = rs.getString("lname");
+				 username = fname +" "+lname;
+			 }
+			 conn.close();
+		 } catch (Exception e) {
+			 System.out.print("message" +e.getMessage());
+			 e.printStackTrace();
+		 }
+		 return username;
+	 }
 }

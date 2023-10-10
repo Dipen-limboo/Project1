@@ -1,8 +1,5 @@
 package product;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Product {
 	int product_id;
 	String product_name, product_image, product_keyword, product_description;

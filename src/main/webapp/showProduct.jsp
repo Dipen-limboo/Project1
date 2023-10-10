@@ -13,7 +13,7 @@
 <body>
     <jsp:include page="./Header/userHeader.jsp"></jsp:include>
     <form class="frm" action="cartServlet" method="post">
-        <div class="product" style="width: 500px; height: 450px; text-align: left; margin: 1rem; padding: 2rem">
+        <div class="product" style="width: 400px; height: 480px; text-align: center; margin: 1rem; padding: 2rem">
             <%
                 List<Product> productList = (List<Product>) request.getAttribute("productList");
             
@@ -25,7 +25,7 @@
             <% session.setAttribute("page", product.getProductID()); %>
             
    			<input type="hidden" name="userID" value="<%= session.getAttribute("userId") %>">
-            <img src="<%= product.getProductImage() %>" alt="Product Image">
+            <img src="data:image/jpeg;base64, <%= product.getProductImage() %>" alt="Product Image" style="height:230px; width:230px">
             <h1 style="text-decoration: underline; font-size: 24px; padding:5px"><%= product.getProductName() %></h1>
             <p style=" padding:5px" ><%= product.getProductDescription() %></p>
             <p style=" padding:5px" >Color:<span style="font-style:italic"> <%= product.getColor() %></span></p>

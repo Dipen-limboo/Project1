@@ -1,12 +1,16 @@
 package product;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -41,7 +45,17 @@ public class EditServlet extends HttpServlet {
                 product = new Product();
                 product.setProductID(productId);
                 product.setProductName(productResultSet.getString("product_name"));
-                product.setProductImage(productResultSet.getString("product_image"));
+                Blob blob = productResultSet.getBlob("product_image");
+				InputStream ins = blob.getBinaryStream();
+                ByteArrayOutputStream os = new ByteArrayOutputStream();
+                byte [] byt = new byte[4096];
+                int byteread = -1;
+                while ((byteread = ins.read(byt))!= -1) {
+                	os.write(byt, 0, byteread);
+                }
+                byte[] imageByte = os.toByteArray();
+                String image = Base64.getEncoder().encodeToString(imageByte);
+                product.setProductImage(image);
                 product.setProductPrice(productResultSet.getDouble("product_price"));
                 product.setProductQuantity(productResultSet.getInt("product_quantity"));
                 product.setProductKeyword(productResultSet.getString("product_keyword"));

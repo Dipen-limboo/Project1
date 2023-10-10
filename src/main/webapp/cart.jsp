@@ -36,8 +36,8 @@
 		%>
 		<input type="hidden" name="cart_id" value="<%= cart.getCartId() %>">	
 		
-		<td style="height: 100px; width: 100px"><%= cart.getProductImage() %></td>
-		
+		<td style="width: 130px"><img src="data:image/jpeg;base64, <%= cart.getProductImage() %>" alt="Product-image" style = "height: 100px; width: 120px"></td>	
+			
 		<td style="width: 200px"><%= cart.getProduct_name() %> </td>
 		
 		<td style="width: 100px"><%= cart.getProduct_price() %> </td>
@@ -62,7 +62,7 @@
 	</div>
 	<div class="cart-foot"> 
 	<a href="./products.jsp" style="color: white; text-decoration: none"> <button>CONTINUE SHOPPING </button></a>
-	<button> CHECKOUT</button>
+	<a href="check"><button>CHECKOUT</button></a>
 	</div>
 	</section>
 <jsp:include page="./Footer/footer.jsp"></jsp:include>

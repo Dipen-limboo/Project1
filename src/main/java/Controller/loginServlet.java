@@ -33,9 +33,11 @@ public class loginServlet extends HttpServlet {
 	            response.sendRedirect("./admin.jsp");
 	        } else {
 	            int userId = UserDao.getUserIdByEmail(u_email);
+	            String userName = UserDao.getUsername(u_email);
 	            HttpSession session = request.getSession();
 	            session.setAttribute("user", usr);
 	            session.setAttribute("userId", userId);
+	            session.setAttribute("username", userName);
 
 	            Integer pagename = (Integer) session.getAttribute("page");
 	            if (pagename != null && pagename > 0) {
