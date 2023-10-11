@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../CSS/styles.css">
 </head>
 <body>
-    <footer class="footer" style="height: 3rem">
+    <footer class="footer" style="height: 3rem; margin-top: 1rem">
         <p style="padding:10px;">&copy; 2023 Dipen Limbu</p>
     </footer>
 </body>

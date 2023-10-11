@@ -13,7 +13,7 @@
 <body>
     <jsp:include page="./Header/userHeader.jsp"></jsp:include>
     <form class="frm" action="cartServlet" method="post">
-        <div class="product" style="width: 400px; height: 480px; text-align: center; margin: 1rem; padding: 2rem">
+        <div class="product" style="width: 400px; height: 500px; text-align: center; margin: 1rem; padding: 2rem">
             <%
                 List<Product> productList = (List<Product>) request.getAttribute("productList");
             
