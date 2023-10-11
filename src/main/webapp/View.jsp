@@ -11,7 +11,7 @@
 <body style="min-height: 100vh">
 <jsp:include page="./Header/header.jsp"></jsp:include>
 <section style="min-height: 80vh; width: 90%">
-    <table border="1" style="width: 100%">
+    <table border="1" style="width: 100%; margin-left: 50px; margin-top:20px; text-align:center; margin-bottom: 20px; background-color: white;">
         <tr>
             <th>Name</th>
             <th>Image</th>
@@ -21,8 +21,8 @@
             <th>Description</th>
             <th>Colors</th>
             <th>Sizes</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th style="width: 70px">Edit</th>
+            <th style="width: 70px">Delete</th>
         </tr>
         <%
             ArrayList<Product> productList = (ArrayList<Product>) request.getAttribute("productList");

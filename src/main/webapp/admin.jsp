@@ -29,9 +29,9 @@
         <section class="user-management">
             <h2>User Management</h2>
             <ul>
-                <li><a href="#" style="color: #333; text-decoration: none">View Users</a></li>
-                <li><a href="#" style="color: #333; text-decoration: none">Edit Users</a></li>
-                <li><a href="#" style="color: #333; text-decoration: none">Delete Users</a></li>
+                <li><a href="userServlet" style="color: #333; text-decoration: none">View Users</a></li>
+                <li><a href="userServlet" style="color: #333; text-decoration: none">Edit Users</a></li>
+                <li><a href="userServlet" style="color: #333; text-decoration: none">Delete Users</a></li>
             </ul>
         </section>
     </main>

@@ -15,8 +15,8 @@
             <ul>
                 <li><a href="admin.jsp">Dashboard</a></li>
                 <li><a href="ViewServlet">Products</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Users</a></li>
+                <li><a href="orderServlet">Orders</a></li>
+                <li><a href="userServlet">Users</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropbtn">Profile</a>
                     <div class="dropdown-content">

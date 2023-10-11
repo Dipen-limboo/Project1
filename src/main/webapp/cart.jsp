@@ -42,7 +42,7 @@
 		
 		<td style="width: 100px"><%= cart.getProduct_price() %> </td>
 		
-		<td style="width: 100px"><a href='cartUpdate?cart_id= <%= cart.getCartId() %>'><input type="number"  name= "quantity"  value="<%= cart.getQuantity() %>" style="width: 100px;"> </a></td>
+		<td style="width: 100px"><%= cart.getQuantity() %></td>
 	
 		<td style="width: 100px"><%= cart.getTotalPrice() %> </td>		
 			

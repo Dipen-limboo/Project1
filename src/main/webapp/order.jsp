@@ -21,7 +21,7 @@
 				
 			%>
 			<h2 style="margin-top:20px; text-align: center; ">Order </h2> <hr>
-			<input type="hidden" value = "<%= cart.getUser_id() %>">
+			<input type="hidden" name="user_id" value = "<%= cart.getUser_id() %>">
 			<label style="padding-top: 20px; font-weight: normal"> Deliver to: <span><%= cart.getFirstname() %> <%= cart.getLastname() %></span></label>
 			
 			<label style="font-weight: normal"> Email to: <span style="text-decoration: underline"><%=  cart.getEmail() %></span></label>
