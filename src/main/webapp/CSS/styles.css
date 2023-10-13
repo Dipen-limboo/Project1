@@ -18,6 +18,12 @@ body {
     height: 2.5rem;
 }
 
+
+.cate ul li a {
+	color:green;
+	text-decoration: none;	
+}
+
 nav ul {
     list-style: none;
     margin: 0;
@@ -38,8 +44,10 @@ main {
 	 min-height:85vh;
 	 display: flex;
      flex-wrap: wrap;
+     justify-content: space-around;
 }
 .left{
+
 	width:20%;
 	height: 80vh;
 	background-color: #f9f9f9;
@@ -182,7 +190,7 @@ img {
 
 button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: green;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -279,9 +287,44 @@ button {
 }
 
 
+/*ContactUs*/
+.contact_frame{
+    min-height:85vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 20px;
+}
 
+.left_contact{
+	width:40%;
+	height: 80vh;
+	background-color: #f9f9f9;
+	border: 1px solid #ddd;
+	margin: 16px 10px 10px 20px;
+    border-radius: 10px;
+    padding: 20px;
+}
 
+.left_contact h2, p {
+	padding: 10px;	
+}
 
+.left_contact span {
+	font-weight:bolder;
+	
+}
+
+.main_contact {
+	width: 50%;
+	display:block;
+}
+
+/* .main_contact form input{
+	width: 200px;
+	border: 1px solid green;
+	border-radius: 10px;
+} */
 
 
 

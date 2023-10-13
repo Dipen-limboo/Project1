@@ -36,7 +36,7 @@ public class AddProduct extends HttpServlet {
         
         double pprice = Double.parseDouble(request.getParameter("product_price"));
         int quantity = Integer.parseInt(request.getParameter("product_quantity"));
-        String pkeyword = request.getParameter("product_keyword");
+        String pkeyword = request.getParameter("product_keyword").toUpperCase();
         String pdescription = request.getParameter("product_description");
         String colors = request.getParameter("color");
         String sizes = request.getParameter("size");

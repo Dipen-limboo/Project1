@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>User Panel</title>
 <link rel="stylesheet" href="./CSS/styles.css">
 
 </head>

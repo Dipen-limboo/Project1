@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import product.Product;
 
@@ -40,7 +41,6 @@ public class Display extends HttpServlet {
                 Product product = new Product();
                 product.setProductID(rs.getInt("product_id"));
                 product.setProductName(rs.getString("product_name"));
-//                product.setProductImage(rs.getString("product_image"));
                 Blob blob = rs.getBlob("product_image");
 				InputStream ins = blob.getBinaryStream();
                 ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -66,7 +66,13 @@ public class Display extends HttpServlet {
 			/*
 			 * request.getRequestDispatcher("/products.jsp").forward(request, response);
 			 */
-            response.sendRedirect("./products.jsp");
+            HttpSession session = request.getSession();
+            String name = (String)session.getAttribute("currentpage");
+            if (name == "products") {
+            response.sendRedirect("./products.jsp");}
+            else {
+            	response.sendRedirect("display.jsp");
+            }
             } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             // Handle exceptions appropriately for production code

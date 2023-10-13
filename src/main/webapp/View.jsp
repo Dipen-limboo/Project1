@@ -15,7 +15,7 @@
         <tr>
             <th>Name</th>
             <th>Image</th>
-            <th>Price</th>
+            <th style="width: 70px">Price</th>
             <th>Quantity</th>
             <th>Keywords</th>
             <th>Description</th>

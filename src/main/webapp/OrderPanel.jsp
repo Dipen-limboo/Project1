@@ -6,14 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Admin order panel</title>
 <link rel="stylesheet" href="./CSS/styles.css">
 
 </head>
 <body>
-<jsp:include page="./Header/header.jsp"></jsp:include>
+<jsp:include page="./Header/userHeader.jsp"></jsp:include>
 	<div class="orderPanel" style="min-height: 80vh">
-		<table border= 1 style="margin-top: 20px; text-align:center; margin-left: 50px;">
+		<table border= 1 style="width: 90%; margin-top: 20px; text-align:center; margin-left: 50px;">
 			<tr>
 				<th style="width: 100px">Order Id </th>
 				<th style="width: 100px">User Id </th>

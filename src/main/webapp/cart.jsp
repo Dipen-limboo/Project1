@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Cart</title>
 <link rel = "stylesheet" href="./CSS/style.css">
 </head>
 <body>
