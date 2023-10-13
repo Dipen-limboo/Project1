@@ -1,14 +1,47 @@
 package Frontend;
 
+import java.sql.Date;
+
 public class Orders {
-	private int orderId, UserId;
+	private int orderId, UserId, quantity;
+	private String phone, Location;
+	private Date dateOrder;
+	private String productImage, productName;
+	
+	
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public Date getDateOrder() {
+		return dateOrder;
+	}
+	public void setDateOrder(Date dateOrder) {
+		this.dateOrder = dateOrder;
+	}
+	public String getProductImage() {
+		return productImage;
+	}
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	
+	
 	public int getUserId() {
 		return UserId;
 	}
 	public void setUserId(int userId) {
 		UserId = userId;
 	}
-	private String phone, Location;
+
 	public int getOrderId() {
 		return orderId;
 	}

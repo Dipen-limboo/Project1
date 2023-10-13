@@ -15,7 +15,7 @@
 		    <ul>
 		        <li><a href="./products.jsp">Home</a></li>
 		        <li><a href="./display.jsp">Products</a></li>
-		        <li><a href="./ContactUs.jsp">Contact</a></li>
+		        <li><a href="./ContactUs.jsp">Contact Us</a></li>
 		        <li><a href="showCart">Cart</a></li>
 		
 		        <li>
@@ -35,6 +35,7 @@
 		        <li class="dropdown">
 		            <a href="#" class="dropbtn" style="color: #333; background-color:white; border-radius: 50%; padding: 10px;"><%= initEmail %></a>
 		            <div class="dropdown-content" style="margin-top: 20px">
+		                <a href="profie">Profile</a>
 		                <a href="viewOrder">Orders</a>
 		                <a href="logOut">Logout</a>
 		            </div>

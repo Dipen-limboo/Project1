@@ -44,7 +44,8 @@ main {
 	 min-height:85vh;
 	 display: flex;
      flex-wrap: wrap;
-     justify-content: space-around;
+     justify-content: center;
+     gap: 15px;
 }
 .left{
 
@@ -325,6 +326,13 @@ button {
 	border: 1px solid green;
 	border-radius: 10px;
 } */
+
+
+/*orderpanel*/
+.order_div span {
+	color:d1ffbd;
+}
+
 
 
 
