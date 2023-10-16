@@ -10,17 +10,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet("/profie")
-public class profie extends HttpServlet {
+
+@WebServlet("/editProfile")
+public class editProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
+  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		
-		HttpSession session = request.getSession();
-		int id = (Integer) session.getAttribute("userId");
+		int id = Integer.parseInt(request.getParameter("id"));
 		
 		Connection conn = null;
 		PreparedStatement ps = null; 
@@ -42,10 +41,12 @@ public class profie extends HttpServlet {
 			  usr.setPassword(rs.getString("psw"));
 		  }
 		  request.setAttribute("userList", usr);
-		  request.getRequestDispatcher("./profile.jsp").forward(request, response);
+		  request.getRequestDispatcher("./editProfile.jsp").forward(request, response);
 		} catch (Exception e) {
 			System.out.println("Message: " +e.getMessage());
 			e.printStackTrace();
 		}
 	}
 }
+
+

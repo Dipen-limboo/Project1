@@ -11,7 +11,7 @@
 </head>
 <body style="min-height: 100vh">
 <jsp:include page="./Header/header.jsp"></jsp:include>
-<section style="min-height: 80vh; width: 90%">
+<section style="width: 90%">
     <form action="UpdateServlet" method="post">
         <div class="form">
             <div class="left-side">

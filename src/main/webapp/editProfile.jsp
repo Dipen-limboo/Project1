@@ -20,15 +20,15 @@
    	 	 
    	 	<div class="cate" style="margin:10px 0 0 5px; margin-bottom: 1px">
    	 		<ul>
-   	 		<li style="padding: 0 0 0 15px; font-size: 15px"><a href="profie" style="color:#333">My Profile</a></li>
-   	 		<li style="padding: 0 0 0 15px; font-size: 15px"><a href="viewOrder" style="color:#333">My orders</a></li>
+   	 		<li style="padding: 0 0 0 15px; font-size: 15px"><a href="profie" style="color: #333">My Profile</a></li>
+   	 		<li style="padding: 0 0 0 15px; font-size: 15px"><a href="viewOrder" style="color: #333">My orders</a></li>
    	 		</ul>
    	 	</div>
     </div>
     
     <div class="main">
     	
-   			<form class= "profile_form">
+   			<form class= "profile_form" action="changeProfile" method="post">
    			<% User user = (User) request.getAttribute("userList"); %>
    				<h2>My profile</h2>
    				<input type="hidden" name="id" value ="<%= user.getId() %>">
@@ -38,8 +38,8 @@
    				<input type="text" name="lname" value = "<%= user.getLname() %>">
    				<label>Email: </label>
    				<input type="text" name="email" value= "<%= user.getEmail() %>">
-   				<button><a href="editProfile?id=<%= user.getId() %>">Edit</a></button>
-   				<button><a href="passwordChange?id=<%= user.getId() %>">Change Password</a></button>
+   				<button>Save</button>
+   				
    			</form>
      </div> 
 </main>

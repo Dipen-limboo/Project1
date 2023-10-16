@@ -41,7 +41,7 @@ nav li a {
     text-decoration: none;
 }
 main {
-	 min-height:85vh;
+
 	 display: flex;
      flex-wrap: wrap;
      justify-content: center;
@@ -64,7 +64,7 @@ main {
 }
 
 .frm {
-    min-height:85vh;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -110,9 +110,14 @@ button {
     margin-top: 1rem;
 }
 
+/*passwordChange*/
+.main_frame {
+	width: 76%;
+}
+
 /* Admin panel styles */
 .section {
-    min-height: 55vh;
+
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     padding: 1rem;
@@ -230,7 +235,7 @@ button {
 
 /*order*/
 .order {
-	min-height: 85vh;
+
 	background-color: white;
 }
 
@@ -279,18 +284,17 @@ button {
 
 .cate ul li{
 	padding: 20px;
-	color:green;
+	
 }
 
 .cate ul li:hover{
 	font-size: 20px;
-	pointer:cursor;	
+	cursor: pointer;	
 }
 
 
 /*ContactUs*/
 .contact_frame{
-    min-height:85vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -321,6 +325,11 @@ button {
 	display:block;
 }
 
+.main_contact label {
+	font-weight: normal;
+	padding-left: 0.5rem;
+}
+
 /* .main_contact form input{
 	width: 200px;
 	border: 1px solid green;
@@ -333,6 +342,40 @@ button {
 	color:d1ffbd;
 }
 
+/*profile*/
+
+.profile_form {
+	margin-top: 1rem;
+	color: #333;
+	padding-left:2rem;
+}
+
+.main_frame .profile_form{
+	padding-left: 2rem;	
+}
+
+.profile_form h2 {
+	text-align: left;
+	margin-bottom: 1rem;
+}
 
 
 
+.profile_form label {
+	font-weight: normal;
+	padding-left: 0.5rem;
+}
+
+.profile_form input {
+	width: 42rem;
+}
+.main_frame .profile_form input {
+	width: 40rem;
+}
+.profile_form button a{
+	color:#fff;
+}
+
+.profile_form  button:hover > a{
+	color:#333;
+}

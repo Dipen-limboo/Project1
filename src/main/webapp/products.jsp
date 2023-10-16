@@ -28,7 +28,7 @@
             if (productList != null && !productList.isEmpty()) {
                 Product product = productList.get(0);
         %>
-   	 	<div class="cate" style="margin:15px 0 0 10px">
+   	 	<div class="cate" style="margin:15px 0 0 10px; color:green;">
    	 		<ul>
    	 		<li><a href="Categories?product_keyword=Shoes">Shoes</a></li>
    	 		<li><a href="Categories?product_keyword=T-shirt">T-shirt</a></li>

@@ -44,7 +44,7 @@ nav li a {
 }
 
 .login-form{
-    min-height: 100vh;
+
     display: flex;
     justify-content: center;
 }
@@ -254,7 +254,7 @@ footer {
 /* cart */
 
 .cart-section {
-	min-height: 65vh;
+
 	justify-content: space-evenly;
 	margin-left: 2rem;
 	width:95%;

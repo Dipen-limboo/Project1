@@ -12,7 +12,7 @@
 </head>
 <body>
 <jsp:include page="./Header/userHeader.jsp"></jsp:include>
-	<div class="orderPanel" style="min-height: 80vh; color: green; font-weight:normal; Text-align:center">
+	<div class="orderPanel" style=" color: green; font-weight:normal; Text-align:center">
 	<% List <Orders> list = (List<Orders>) request.getAttribute("orderList");
 		if (list != null && !list.isEmpty()){
 			for (Orders order: list){

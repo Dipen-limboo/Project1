@@ -10,7 +10,7 @@
 </head>
 <body>
 <jsp:include page="./Header/header.jsp"></jsp:include>
-    <main>
+    <main class="admin-main" style="gap:10rem">
         <section class="product-management" id="Dashboard">
             <h2>Product Management</h2>
             <ul>

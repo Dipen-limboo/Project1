@@ -12,7 +12,7 @@
 </head>
 <body>
 <jsp:include page="./Header/header.jsp"></jsp:include>
-	<div class="orderPanel" style="min-height: 80vh">
+	<div class="orderPanel">
 		<table border= 1 style="margin-top: 20px; text-align:center; margin-left: 50px;">
 			<tr>
 				<th style="width: 100px; padding: 10px">User Id </th>

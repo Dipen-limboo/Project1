@@ -12,7 +12,7 @@
 </head>
 <body>
 <jsp:include page="./Header/header.jsp"></jsp:include>
-	<div class="orderPanel" style="min-height: 80vh">
+	<div class="orderPanel">
 	<h2 style="text-align: center; font-style: italic">Change Role</h2>
 		<form class="userPanel" action="updateRole" method="Post">
 		<% User user = (User)request.getAttribute("role");
