@@ -22,7 +22,11 @@
                 <li style="padding: 0 0 0 15px; font-size: 15px"><a href="profie" style="color:#333">My Profile</a></li>
                 <li style="padding: 0 0 0 15px; font-size: 15px"><a href="viewOrder" style="color:#333">My orders</a></li>
             </ul>
-        </div>
+            </div>
+      <div style="margin-top: 0.5rem; text-align: left; font-family:caliber; padding-left: 13px">
+   	 	<% int userId = (Integer) session.getAttribute("userId"); %>
+    		<h2 style="font-weight: normal; color: #333; font-size: 22px; font-weight: bold"><a href="review?id=<%= userId %>" style="text-decoration: none; color:#333">My reviews</a> </h2>
+   	 	</div>
     </div>
 
     <div class="main_frame" style="text-align:left;">

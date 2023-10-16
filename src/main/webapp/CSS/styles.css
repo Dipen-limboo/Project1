@@ -379,3 +379,20 @@ button {
 .profile_form  button:hover > a{
 	color:#333;
 }
+/*Review*/
+.review_right {
+	width: 76%;
+}
+
+.review_right button {
+	height:50px;
+	width:150px;
+}
+
+.review_right .table {
+	border: 1px solid #333;
+}
+
+.review_right td {
+	width: 250px;
+}

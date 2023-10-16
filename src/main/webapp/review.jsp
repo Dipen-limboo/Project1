@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="Controller.User" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Frontend.Orders" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Profile</title>
+<title>Review</title>
 <link rel="stylesheet" href="./CSS/styles.css">
 </head>
 <body>
@@ -30,21 +32,32 @@
    	 	</div>
     </div>
     
-    <div class="main">
-    	
-   			<form class= "profile_form">
-   			<% User user = (User) request.getAttribute("userList"); %>
-   				<h2>My profile</h2>
-   				<input type="hidden" name="id" value ="<%= user.getId() %>">
-   				<label>First Name: </label>
-   				<input type="text" name="fname" value = "<%= user.getFname() %>" >
-   				<label>Last Name: </label>
-   				<input type="text" name="lname" value = "<%= user.getLname() %>">
-   				<label>Email: </label>
-   				<input type="text" name="email" value= "<%= user.getEmail() %>">
-   				<button><a href="editProfile?id=<%= user.getId() %>">Edit</a></button>
-   				<button><a href="passwordChange?id=<%= user.getId() %>">Change Password</a></button>
-   			</form>
+    <div class="review_right">
+    	<div style="margin-top: 1rem; color: #333">
+    		<h2 style="text-align: left; margin-bottom: 0.5rem">My Reviews</h2>
+    	</div>
+    	<% 
+    		List<Orders> list = (List<Orders>) request.getAttribute("orderList"); 
+    		if (list != null && !list.isEmpty()){
+    			for (Orders order: list){
+    	%>
+    	<div>
+    		<h4 style="font-weight: normal; padding: 10px 0 0 18px">YakthungIpa</h4>
+    		<p style="font-size: 12px">Purchased on <%= order.getDateOrder() %></p>
+    		<div style="display: flex; padding: 20px" class="table">
+    			<table>
+    				<tr>
+    					<td><img src="data:image/jpeg;base64, <%= order.getProductImage() %>" style="height:100px; width: 100px"></td>
+    					<td><%= order.getProductName() %></td>
+    					<td style="padding-left:20px"><button style="text-align: center">Review</button></td>
+    				</tr>
+    			</table>
+    		</div>
+    	</div>
+    	<%
+    			}
+    		}
+    	%>
      </div> 
 </main>
 <jsp:include page="./Footer/footer.jsp"></jsp:include>
