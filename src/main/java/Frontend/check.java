@@ -37,7 +37,6 @@ public class check extends HttpServlet {
         	while (rs.next()) {
         		Cart cart = new Cart();
         		cart.setUser_id(rs.getInt("user_id"));
-        		cart.setCartId(rs.getInt("cart_id"));
         		cart.setProduct_id(rs.getInt("product_id"));
         		cart.setFirstname(rs.getString("fname"));
         		cart.setLastname(rs.getString("lname"));

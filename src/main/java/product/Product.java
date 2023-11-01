@@ -1,5 +1,7 @@
 package product;
 
+import java.io.InputStream;
+
 public class Product {
 	int product_id;
 	String product_name, product_image, product_keyword, product_description;
@@ -83,6 +85,11 @@ public class Product {
     public void setSize(String size) {
     	this.size = size;
     }
+	public void setProductImage(InputStream ins) {
+		
+		
+	}
+
 
 	
 }

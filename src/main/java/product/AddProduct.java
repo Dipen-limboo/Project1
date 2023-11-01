@@ -27,7 +27,6 @@ public class AddProduct extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String pname = request.getParameter("product_name");
-//        String pimage = request.getParameter("product_image");
         InputStream ins = null;
         Part file = request.getPart("product_image");
         if (file != null) {
@@ -49,7 +48,6 @@ public class AddProduct extends HttpServlet {
             PreparedStatement ps = conn.prepareStatement(
                     "insert into products (product_name, product_image, product_price, product_keyword, product_description, color, size, product_quantity) values (?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, pname);
-//            ps.setString(2, pimage);
             if(file != null) {
             	ps.setBlob(2, ins);
             }

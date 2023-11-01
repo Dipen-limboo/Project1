@@ -52,11 +52,11 @@ public class order extends HttpServlet {
 				}
 				if (productId.length == cartId.length) {
                     for (int i = 0; i < productId.length; i++) {
-                        ps = conn.prepareStatement("insert into order_details (order_id, product_id, cart_id, user_id) values (?, ?, ?, ?)");
+                        ps = conn.prepareStatement("insert into order_details (order_id, product_id, user_id) values ( ?, ?, ?)");
                         ps.setInt(1, order_id);
                         ps.setInt(2, Integer.parseInt(productId[i]));
-                        ps.setInt(3, Integer.parseInt(cartId[i]));
-                        ps.setInt(4, userId);
+                        
+                        ps.setInt(3, userId);
 
                         status = ps.executeUpdate();
                     }

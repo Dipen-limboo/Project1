@@ -1,6 +1,7 @@
 package product;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 @WebServlet("/UpdateServlet")
 public class UpdateServlet extends HttpServlet {
@@ -21,7 +23,11 @@ public class UpdateServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		String name = request.getParameter("product_name");
-		String image = request.getParameter("product_image");
+	    InputStream ins = null;
+	        Part file = request.getPart("product_image");
+	        if (file != null) {
+	        	ins = file.getInputStream();
+	        }
 		double price = Double.parseDouble(request.getParameter("product_price"));
 		int quantity =  Integer.parseInt(request.getParameter("product_quantity"));
 		String keywords = request.getParameter("product_keyword");
@@ -33,7 +39,7 @@ public class UpdateServlet extends HttpServlet {
 		Product pr = new Product();
 		pr.setProductID(id);
 		pr.setProductName(name);
-		pr.setProductImage(image);
+		pr.setProductImage(ins);
 		pr.setProductPrice(price);
 		pr.setProductQuantity(quantity);
 		pr.setProductKeyword(keywords);
@@ -50,7 +56,7 @@ public class UpdateServlet extends HttpServlet {
 	         conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false", "root", "0564");
 	         ps = conn.prepareStatement("update products set product_name=? , product_image=?, product_price = ?, product_keyword = ?, product_description = ?, color = ?, size = ?, product_quantity = ? where product_id= ?");
 	         ps.setString(1, pr.getProductName());
-	         ps.setString(2, pr.getProductImage());
+	        //here logic to insert the image or update the image
 	         ps.setDouble(3, pr.getProductPrice());
 	         ps.setString(4, pr.getProductKeyword());
 	         ps.setString(5, pr.getProductDescription());

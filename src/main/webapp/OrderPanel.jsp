@@ -13,12 +13,12 @@
 <body>
 <jsp:include page="./Header/header.jsp"></jsp:include>
 <div class="orderPanel" style="min-height: 80vh">
-		<table border= 1 style="margin-top: 20px; text-align:center; margin-left: 50px;">
+		<table border= 1 style="margin-top: 20px; text-align:center; margin-left: 50px; width: 90%">
 			<tr>
-				<th style="width: 100px">Order Id </th>
-				<th style="width: 350px">Location</th>
-				<th style="width: 150px">Phone</th>
-				<th style="width: 150px"> Order Date </th>
+				<th style="">Order Id </th>
+				<th style="">Location</th>
+				<th style="">Phone</th>
+				<th style="">Order Date </th>
 			</tr>
 			<% List <Orders> list = (List <Orders>) request.getAttribute("orderList");
 				if (list != null && !list.isEmpty()){

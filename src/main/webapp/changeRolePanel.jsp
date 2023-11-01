@@ -25,9 +25,13 @@
 			<label>Email: <%= user.getEmail() %></label><br>
 			
 			<label>Role: </label>
-			<p>(If you want to change the role of user to admin or vice versa)</p>
+			<%-- <p>(If you want to change the role of user to admin or vice versa)</p>
 			<input type="text" name="role" value="<%= user.getRole() %>">
-			<br>
+			<br> --%>
+			<select name="role">
+			<option value = "admin">Admin</option>
+			<option value = "user">User</option>
+			</select>
 			<button>Change</button>
 		</form>
 	</div>

@@ -25,7 +25,6 @@
         %>
         <input type="hidden" name="product_id" value="<%= carts.getProduct_id() %>">
     
-        <input type="hidden" name="cart_id" value="<%= carts.getCartId() %>">
      
         <%
             }
