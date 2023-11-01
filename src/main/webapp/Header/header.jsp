@@ -10,7 +10,9 @@
 </head>
 <body>
 	<header class = "heads">
+        <a href="./admin.jsp" style="color:white; text-decoration:none">
         <h1 style="font-size: 30px;">  Welcome To Admin Panel</h1>
+        </a>
         <nav>
             <ul>
                 <li><a href="admin.jsp">Dashboard</a></li>

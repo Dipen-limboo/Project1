@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Review</title>
+<title>Review Panel</title>
 <link rel="stylesheet" href="./CSS/styles.css">
 </head>
 <body>
@@ -51,9 +51,9 @@
     					<input type ="hidden" name="user_id" value="<%= order.getUserId() %>">
     					<td><img src="data:image/jpeg;base64, <%= order.getProductImage() %>" style="height:100px; width: 100px"></td>
     					<td><%= order.getProductName() %></td>
-    					<td style="padding-left:20px"><a href="reviewPanel?orderDetails_id = <%= order.getOrderDetails_id() %>"><button style="text-align: center">Review</button></a></td>
+    					
+    					<!-- <td style="padding-left:20px"><a href="reviewPanel.jsp"><button style="text-align: center">Review</button></a></td> -->
     				</tr>
-    	
     			</table>
     		</div>
     	</div>

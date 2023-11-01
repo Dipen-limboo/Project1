@@ -57,7 +57,7 @@ public class viewOrder extends HttpServlet {
 				list.add(order);
 			}
 			request.setAttribute("orderList", list);
-			request.getRequestDispatcher("./OrderPanel.jsp").forward(request, response);
+			request.getRequestDispatcher("./userOrderPanel.jsp").forward(request, response);
 		} catch (Exception e) {
 			System.out.println("Message: " +e.getMessage());
 			e.printStackTrace();

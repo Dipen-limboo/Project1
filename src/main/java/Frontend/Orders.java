@@ -7,8 +7,15 @@ public class Orders {
 	private String phone, Location;
 	private Date dateOrder;
 	private String productImage, productName;
+	private int orderDetails_id;
 	
 	
+	public int getOrderDetails_id() {
+		return orderDetails_id;
+	}
+	public void setOrderDetails_id(int orderDetails_id) {
+		this.orderDetails_id = orderDetails_id;
+	}
 	public int getQuantity() {
 		return quantity;
 	}

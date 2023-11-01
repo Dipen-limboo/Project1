@@ -1,4 +1,4 @@
-package product;
+package Frontend;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -18,16 +18,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Controller.UserDao;
-import Frontend.Orders;
 
-@WebServlet("/review")
-public class review extends HttpServlet {
+/**
+ * Servlet implementation class reviewPanel
+ */
+@WebServlet("/reviewPanel")
+public class reviewPanel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
+response.setContentType("text/html");
 		
-		int id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("orderDetails_id"));
+		System.out.println(id);
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs= null;

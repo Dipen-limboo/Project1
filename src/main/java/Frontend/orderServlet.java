@@ -31,10 +31,9 @@ public class orderServlet extends HttpServlet {
 			while(rs.next()) {
 				Orders order = new Orders();
 				order.setOrderId(rs.getInt("order_id"));
-				order.setUserId(rs.getInt("user_id"));
+				order.setDateOrder(rs.getDate("order_date"));
 				order.setPhone(rs.getString("phone"));
 				order.setLocation(rs.getString("Location"));
-				
 				list.add(order);
 			}
 			request.setAttribute("orderList", list);

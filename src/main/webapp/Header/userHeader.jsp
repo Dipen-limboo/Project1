@@ -10,7 +10,8 @@
 </head>
 <body>
     <header class="head">
-        <h1 style="letter-spacing: 2px; margin-left: 30px;"><span style="color: #333; background-color: white; border-radius: 50%; padding:5px"> Y</span>akthungIpa</h1>
+        <a href="./products.jsp" style="color:white; text-decoration:none">
+        <h1 style="letter-spacing: 2px; margin-left: 30px;"><span style="color: #333; background-color: white; border-radius: 50%; padding:5px"> Y</span>akthungIpa</h1></a>
         <nav>
 		    <ul>
 		        <li><a href="./products.jsp">Home</a></li>
