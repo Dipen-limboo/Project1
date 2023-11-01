@@ -18,26 +18,35 @@ public class RemoveCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
 		
-		int id = Integer.parseInt(request.getParameter("cart_id"));
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false", "root", "0564");
-			PreparedStatement ps = conn.prepareStatement("delete from carts where cart_id = ?");
-			ps.setInt(1, id);
-			int status = ps.executeUpdate();
-			if(status > 0) {
-				out.print("Deleted succesfully");
-				response.sendRedirect("showCart");
-			} else {
-				out.print("Failed To Delete");
-				response.sendRedirect("showCart");
+		    response.setContentType("text/html");
+		    PrintWriter out = response.getWriter();
+		    
+		    int id = Integer.parseInt(request.getParameter("cart_id"));
+		    
+		    try {
+		        Class.forName("com.mysql.cj.jdbc.Driver");
+		        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false", "root", "0564");
+			
+					PreparedStatement pss = conn.prepareStatement("delete from carts where cart_id = ?");
+					pss.setInt(1, id);
+					
+					int state = pss.executeUpdate();
+					if(state > 0) {
+					
+						System.out.println("Cart Deleted Successfully");
+						response.sendRedirect("showCart");
+					} 
+					else {
+						System.out.println("Failed To Delete Cart"); 
+						response.sendRedirect("showCart");			
+					}
+					
+		        
+		    } catch (Exception e) {
+		        System.out.println("message" + e.getMessage());
+		        e.printStackTrace();
+		    }
 			}
-		} catch (Exception e) {
-			System.out.println("message" +e.getMessage());
-			e.printStackTrace();
 		}
-	}
-}
+
