@@ -30,17 +30,20 @@ public class order extends HttpServlet {
 		String[] cartId = request.getParameterValues("cart_id");
 		String phone = request.getParameter("phone");
 		String Location = request.getParameter("Location");
+		String type= "sell";
+		String[] quantity =request.getParameterValues("quantity");
+		double total = Double.parseDouble(request.getParameter("total"));
 		
 		try {
 			Connection conn = UserDao.getConnection();
-			PreparedStatement ps = conn.prepareStatement("insert into orders (Location, phone, order_date) values ( ?, ?, ?)");
+			PreparedStatement ps = conn.prepareStatement("insert into orders (Location, phone, order_date, total) values ( ?, ?, ?, ?)");
 			
 			ps.setString(1, Location);
 			ps.setString(2, phone);
 			
 			Timestamp currentTimestamp = new Timestamp(new Date().getTime());
 	        ps.setTimestamp(3, currentTimestamp);
-			
+			ps.setDouble(4, total);
 			int status = ps.executeUpdate();
 			if (status > 0) {
 				ps = conn.prepareStatement("select LAST_INSERT_ID()");
@@ -50,25 +53,52 @@ public class order extends HttpServlet {
 				while (rs.next()) {
 					order_id = rs.getInt(1);
 				}
-				if (productId.length == cartId.length) {
+				if (productId.length == cartId.length && cartId.length == quantity.length) {
                     for (int i = 0; i < productId.length; i++) {
-                        ps = conn.prepareStatement("insert into order_details (order_id, product_id, user_id) values ( ?, ?, ?)");
+                        ps = conn.prepareStatement("insert into order_details (order_id, product_id, user_id, quantity) values (?, ?, ?, ?)");
                         ps.setInt(1, order_id);
                         ps.setInt(2, Integer.parseInt(productId[i]));
                         
                         ps.setInt(3, userId);
-
+                        ps.setInt(4, Integer.parseInt(quantity[i]));
+                        
                         status = ps.executeUpdate();
                     }
                 } else {
                     out.println("Product and cart ID arrays have different lengths.");
                 }
-				if (status > 0) {		
-						out.println("You have places order!!!");
-					} 
-					else {
-						out.println("Your ordered has been cancelled!!!");
+				if (status > 0) {
+					if(productId.length == quantity.length)
+					 for (int i = 0; i < productId.length; i++) {
+					PreparedStatement stocksPs = conn.prepareStatement("insert into stocks (product_id, user_id, quantity, type) values (?,?,?,?)");
+					stocksPs.setInt(1, Integer.parseInt(productId[i]));
+					stocksPs.setInt(2, userId);
+					
+					stocksPs.setInt(3, Integer.parseInt(quantity[i]));
+					stocksPs.setString(4, type);
+					int stockProcess = stocksPs.executeUpdate();
+					
+					if(stockProcess > 0) {
+						if (productId.length == cartId.length) {
+		                    for (int j = 0; j < productId.length; j++) {
+						PreparedStatement deletePs = conn.prepareStatement("delete from carts where cart_id = ?");
+							deletePs.setInt(1, Integer.parseInt(cartId[j]));
+							int process = deletePs.executeUpdate();
+		                    	}
+							} else {
+							System.out.println("Cannot delete the cart");
+							}
 					}
+					 
+				}
+				
+
+						
+				out.println("You have places order!!!");
+				} 
+				else {
+					out.println("Your ordered has been cancelled!!!");
+				}
 			}
 		} catch (Exception e) {
 			System.out.println("Message: " +e.getMessage());

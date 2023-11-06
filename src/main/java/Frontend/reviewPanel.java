@@ -27,9 +27,10 @@ public class reviewPanel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-response.setContentType("text/html");
+		response.setContentType("text/html");
 		
 		int id = Integer.parseInt(request.getParameter("orderDetails_id"));
+		
 		System.out.println(id);
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -37,7 +38,7 @@ response.setContentType("text/html");
 		
 		try {
 			conn = UserDao.getConnection();
-			ps = conn.prepareStatement("select o.order_date, p.product_image, p.product_name, p.color, od.user_id, od.orderDetails_id from order_details as od join orders o on od.order_id=o.order_id join products p on od.product_id = p.product_id where od.user_id=?; ");
+			ps = conn.prepareStatement("select o.order_date, p.product_image, p.product_name, od.user_id, od.orderDetails_id from order_details as od join orders o on od.order_id=o.order_id join products p on od.product_id = p.product_id where od.user_id=?; ");
 			ps.setInt(1, id);
 			
 			rs = ps.executeQuery();
@@ -63,7 +64,7 @@ response.setContentType("text/html");
 				list.add(order);
 			}
 			request.setAttribute("orderList", list);
-			request.getRequestDispatcher("./review.jsp").forward(request, response);
+			request.getRequestDispatcher("./reviewPanel.jsp").forward(request, response);
 		} catch (Exception e) {
 			System.out.println("Message: " +e.getMessage());
 			e.printStackTrace();

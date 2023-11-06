@@ -34,7 +34,7 @@ public class review extends HttpServlet {
 		
 		try {
 			conn = UserDao.getConnection();
-			ps = conn.prepareStatement("select o.order_date, p.product_image, p.product_name, p.color, od.user_id, od.orderDetails_id from order_details as od join orders o on od.order_id=o.order_id join products p on od.product_id = p.product_id where od.user_id=?; ");
+			ps = conn.prepareStatement("select o.order_date, p.product_image, p.product_name, od.user_id, od.orderDetails_id from order_details as od join orders o on od.order_id=o.order_id join products p on od.product_id = p.product_id where od.user_id=?; ");
 			ps.setInt(1, id);
 			
 			rs = ps.executeQuery();
@@ -59,7 +59,7 @@ public class review extends HttpServlet {
 				order.setProductName(rs.getString("product_name"));
 				list.add(order);
 			}
-			request.setAttribute("orderList", list);
+			request.setAttribute("orist", list);
 			request.getRequestDispatcher("./review.jsp").forward(request, response);
 		} catch (Exception e) {
 			System.out.println("Message: " +e.getMessage());

@@ -3,7 +3,6 @@ package Frontend;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -40,8 +39,8 @@ public class showCart extends HttpServlet {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false",
                     "root", "0564");
 			PreparedStatement pss = conn.prepareStatement(
-	                 "SELECT c.cart_id, c.user_id, c.product_id, c.quantity, p.product_price, p.product_image, p.product_name, c.total_price "
-	                         + "FROM carts AS c JOIN products p ON c.product_id = p.product_id JOIN users u ON c.user_id = u.id WHERE c.user_id = ?");
+	                 "SELECT c.cart_id, c.user_id, c.product_id, p.product_price, p.product_image, p.product_name, c.total_price"
+	                 + "	                         FROM carts AS c JOIN products p ON c.product_id = p.product_id JOIN users u ON c.user_id = u.id WHERE c.user_id = ?;");
 	         pss.setInt(1, userID);
 	         List<Cart> list = new ArrayList<>();
 	         ResultSet res = pss.executeQuery();
@@ -51,7 +50,7 @@ public class showCart extends HttpServlet {
 	             cart.setCartId(res.getInt("cart_id"));
 	             cart.setUser_id(res.getInt("user_id"));
 	             cart.setProduct_id(res.getInt("product_id"));
-	             cart.setQuantity(res.getInt("quantity"));
+	             
 	             cart.setTotalPrice(res.getDouble("total_price"));
 	             cart.setProduct_price(res.getInt("product_price"));
 //	             cart.setProductImage(res.getString("product_image"));
@@ -69,6 +68,14 @@ public class showCart extends HttpServlet {
                  
                  cart.setProductImage(image);
 	             cart.setProduct_name(res.getString("product_name"));
+	             
+	             PreparedStatement ps =  conn.prepareStatement("select quantity from carts where user_id = ?");
+	             ps.setInt(1, userID);
+	             ResultSet rs = ps.executeQuery();
+	             while(rs.next()) {
+	            	 cart.setQuantity(rs.getInt("quantity"));
+	             }
+	             
 	             list.add(cart);
 	             sumtotal += cart.getTotalPrice();
 	         }

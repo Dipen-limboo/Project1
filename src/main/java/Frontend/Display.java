@@ -34,9 +34,12 @@ public class Display extends HttpServlet {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false", "root", "0564");
-            ps = conn.prepareStatement("SELECT * FROM products");
+            ps = conn.prepareStatement("SELECT product_id, product_name, product_image, product_price, product_keyword, product_description FROM products");
             ResultSet rs = ps.executeQuery();
-            
+			/*
+			 * List<String> colors = new ArrayList<>(); List<String> sizes = new
+			 * ArrayList<>();
+			 */
             while (rs.next()) {
                 Product product = new Product();
                 product.setProductID(rs.getInt("product_id"));
@@ -56,12 +59,17 @@ public class Display extends HttpServlet {
                 product.setProductPrice(rs.getDouble("product_price"));
                 product.setProductKeyword(rs.getString("product_keyword"));
                 product.setProductDescription(rs.getString("product_description"));
-                product.setColor(rs.getString("color"));
-                product.setSize(rs.getString("size"));
+				/*
+				 * colors.add(rs.getString("colors"));
+				 * 
+				 * sizes.add(rs.getString("sizes"));
+				 */
                 productList.add(product);
               
             }
-            
+			/*
+			 * request.setAttribute("color", colors); request.setAttribute("size", sizes);
+			 */
             request.setAttribute("productList", productList);
 			/*
 			 * request.getRequestDispatcher("/products.jsp").forward(request, response);

@@ -11,7 +11,7 @@
 <body>
 	<header class = "heads">
         <a href="./admin.jsp" style="color:white; text-decoration:none">
-        <h1 style="font-size: 30px;">  Welcome To Admin Panel</h1>
+        <h1 style="font-size: 30px; padding-left: 50px; font-family:Times New Roman"> Yakthungs</h1>
         </a>
         <nav>
             <ul>

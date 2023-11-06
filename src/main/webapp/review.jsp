@@ -37,23 +37,26 @@
     		<h2 style="text-align: left; margin-bottom: 0.5rem">My Reviews</h2>
     	</div>
     	<% 
-    		List<Orders> list = (List<Orders>) request.getAttribute("orderList"); 
+    		List<Orders> list = (List<Orders>) request.getAttribute("orist"); 
     		if (list != null && !list.isEmpty()){
     			for (Orders order: list){
     	%>
     	<div>
     		<h4 style="font-weight: normal; padding: 10px 0 0 18px">YakthungIpa</h4>
     		<p style="font-size: 12px">Purchased on <%= order.getDateOrder() %></p>
-    		<div style="display: flex; padding: 20px" class="table">
+    		<div style="display: flex; padding: 20px; width: 800px" class="table">
+   				
     			<table>
+    			<form method="get" action="reviewPanel">
     				<tr>
     					<input type= "hidden" name = "orderDetails_id" value="<%= order.getOrderDetails_id() %>">
+    					
     					<input type ="hidden" name="user_id" value="<%= order.getUserId() %>">
     					<td><img src="data:image/jpeg;base64, <%= order.getProductImage() %>" style="height:100px; width: 100px"></td>
     					<td><%= order.getProductName() %></td>
-    					<td style="padding-left:20px"><a href="reviewPanel?orderDetails_id = <%= order.getOrderDetails_id() %>"><button style="text-align: center">Review</button></a></td>
+    					<td style="padding-left:20px"><button style="text-align: center">Review</button></td>
     				</tr>
-    	
+    			</form>
     			</table>
     		</div>
     	</div>

@@ -25,26 +25,67 @@
     <input type="number" name="product_quantity" required><br><br>
 	
 	<label >Description:</label> <br>
-	<textarea  name="product_description" rows="4"></textarea> <br><br>
+	<textarea  name="product_description" rows="4" required></textarea> <br><br>
 	
-	<label for="color">Color:</label>  <br>        
-  	<input type="text" name="color">
+	<label for="color">Color:</label>   
+  	<div style="display: flex; justify-content: space-between">
+  	<div>
+  	<input type="checkbox" name="color" value="red"> Red <br>
+	<input type="checkbox" name="color" value="blue"> Blue <br>
+	<input type="checkbox" name="color" value="black"> Black <br>
+	</div>
+	<div>
+	<input type="checkbox" name="color" value="white"> White <br>
+	<input type="checkbox" name="color" value="green"> Green <br>
+	<input type="checkbox" name="color" value="yellow"> Yellow <br>
+	</div>
+	<div>
+	<input type="checkbox" name="color" value="grey"> Grey <br>
+	<input type="checkbox" name="color" value="pink"> Pink <br>
+	<input type="checkbox" name="color" value="orange"> Orange <br>
+	</div>
+	</div>
 	
+	<br><label for="size">Size:</label>    <br>        
+    <div style="display: flex; justify-content: space-between">
+  	<div>
+  	<input type="checkbox" name="size" value="small"> S <br>
+	<input type="checkbox" name="size" value="large"> L <br>
+	<input type="checkbox" name="size" value="double extra large"> XXL <br>
+	</div>
+	<div>
+	<input type="checkbox" name="size" value="Medium"> M <br>
+	<input type="checkbox" name="size" value="extra large"> XL <br>
+	<input type="checkbox" name="size" value="triple extra large"> XXXL <br>
 	
-	<label for="size">Size:</label>    <br>        
-    <input type="text" name="size">
+	</div>
+	<div>
+	<input type="checkbox" name="size" value="35"> 35 <br>
+	<input type="checkbox" name="size" value="36"> 36 <br>
+	<input type="checkbox" name="size" value="37"> 37 <br>
+	</div>
+	<div>
+	<input type="checkbox" name="size" value="38"> 38 <br>
+	<input type="checkbox" name="size" value="39"> 39 <br>
+	<input type="checkbox" name="size" value="40"> 40 <br>
+	</div>
+	<div>
+	<input type="checkbox" name="size" value="41"> 41 <br>
+	<input type="checkbox" name="size" value="42"> 42 <br>
+	</div>
+	</div> 
 	</div>
 	<div class= "right-side">
 	
 	<label >Keywords:</label>
-	<select name="product_keyword" style= "width: 500px ">
-	<option> --- Select Categories ---</option>
-	<option value = "shoes">Shoes</option>
-	<option value = "T-shirt">T-shirt</option>
-	<option value = "Track Suit">Track Suit</option>
-	<option value = "Jaama">Jaama</option>
-	<option value = "Medy">Medy </option>
-	<option value = "Tops">Tops</option>
+	<select name="product_keyword" style= "width: 500px "required>
+		<option> --- Select Categories ---</option>
+		<option value = "shoes">Shoes</option>
+		<option value = "T-shirt">T-shirt</option>
+		<option value = "Track Suit">Track Suit</option>
+		<option value = "Jaama">Jaama</option>
+		<option value = "Medy">Medy </option>
+		<option value = "Tops">Tops</option>
 	</select> <br><br>
 	
 	<label for="product_image">Product Image:</label>

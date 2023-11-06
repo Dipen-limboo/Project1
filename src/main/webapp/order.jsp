@@ -24,8 +24,8 @@
             for (Cart carts : list) {
         %>
         <input type="hidden" name="product_id" value="<%= carts.getProduct_id() %>">
-    
-     
+    	<input type="hidden" name="cart_id" value="<%= carts.getCartId() %>">
+     	<input type="hidden" name = "quantity" value = "<%= carts.getQuantity() %>">
         <%
             }
         %>
@@ -44,6 +44,7 @@
         <label style="font-weight: normal">Vat(13%): <span><%= request.getAttribute("vat") %> /-</span></label>
         <hr style="margin-left: 25px; width: 140px; border-radius: 0px;">
         <label style="font-weight: normal">Total Price: <span><%= request.getAttribute("net") %> /-</span></label>
+        <input type = hidden name="total" value="<%= request.getAttribute("net") %>">
         <button style="margin-left: 70px">Place order</button>
     </form>
 </div>

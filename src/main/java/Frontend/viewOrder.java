@@ -29,11 +29,15 @@ public class viewOrder extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		int id = (Integer)session.getAttribute("userId");
-		System.out.println("userId: " +id);
+		
 		
 		try {
 			Connection conn = UserDao.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT os.order_id, o.order_date, p.product_image, p.product_name, c.quantity FROM order_details as os join orders o on os.order_id = o.order_id join products p on os.product_id = p.product_id join carts c on os.cart_id = c.cart_id join users u on os.user_id = u.id where os.user_id = ?");
+			PreparedStatement ps = conn.prepareStatement("select os.order_id, o.order_date, os.quantity, p.product_image, p.product_name\r\n"
+					+ "from order_details as os \r\n"
+					+ "join orders o on o.order_id = os.order_id \r\n"
+					+ "join products p on p.product_id = os.product_id\r\n"
+					+ "where os.user_id = ? ORDER BY os.order_id DESC");
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			List <Orders> list = new ArrayList<>();

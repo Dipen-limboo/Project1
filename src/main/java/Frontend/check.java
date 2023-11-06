@@ -27,7 +27,7 @@ public class check extends HttpServlet {
 		
         try {
         	Connection conn = UserDao.getConnection();
-        	PreparedStatement ps = conn.prepareStatement("select c.user_id, c.product_id, c.cart_id, u.fname, u.lname, u.email, c.total_price from carts as c join users u on c.user_id = u.id where c.user_id = ?");
+        	PreparedStatement ps = conn.prepareStatement("select c.user_id, c.product_id, c.cart_id, u.fname, u.lname, u.email, c.total_price, c.quantity from carts as c join users u on c.user_id = u.id where c.user_id = ?");
         	ps.setInt(1,  id);
         	List <Cart> list = new ArrayList<>();
         	ResultSet rs = ps.executeQuery();
@@ -37,7 +37,9 @@ public class check extends HttpServlet {
         	while (rs.next()) {
         		Cart cart = new Cart();
         		cart.setUser_id(rs.getInt("user_id"));
+        		cart.setCartId(rs.getInt("cart_id"));
         		cart.setProduct_id(rs.getInt("product_id"));
+        		cart.setQuantity(rs.getInt("quantity"));
         		cart.setFirstname(rs.getString("fname"));
         		cart.setLastname(rs.getString("lname"));
         		cart.setEmail(rs.getString("email"));

@@ -62,8 +62,24 @@ public class Categories extends HttpServlet {
               product.setProductPrice(rs.getDouble("product_price"));
               product.setProductKeyword(rs.getString("product_keyword"));
               product.setProductDescription(rs.getString("product_description"));
-              product.setColor(rs.getString("color"));
-              product.setSize(rs.getString("size"));
+              
+              List<String> colors =  new ArrayList<>();
+              PreparedStatement colorPs =  conn.prepareStatement("select GROUP_CONCAT(DISTINCT color) as colors from colors where product_id=?");
+              colorPs.setInt(1, product.getProductID());
+              ResultSet res = colorPs.executeQuery();
+              while(res.next()) {
+            	  colors.add(res.getString("colors"));
+              }
+              product.setColors(colors);
+              
+              List<String> sizes = new ArrayList<>();
+              PreparedStatement sizePs =  conn.prepareStatement("select GROUP_CONCAT(DISTINCT size) as sizes from sizes where product_id=?");
+              sizePs.setInt(1, product.getProductID());
+              ResultSet sizeRs = sizePs.executeQuery();
+              while(sizeRs.next()) {
+            	  sizes.add(sizeRs.getString("sizes"));
+              }
+              product.setSize(sizes);
               productList.add(product);
              
             

@@ -59,19 +59,20 @@ public class CartServlet extends HttpServlet {
                 double total = price * quantity;
   
                 PreparedStatement ps = conn.prepareStatement(
-                        "insert into carts (user_id, product_id, quantity, total_price ) values (?, ?, ?, ?)");
+                        "insert into carts (user_id, product_id, total_price, quantity ) values ( ?, ?, ?, ?)");
                 ps.setInt(1, userID);
                 ps.setInt(2, productID);
-                ps.setInt(3, quantity);
-                ps.setDouble(4, total);
+                
+                ps.setDouble(3, total);
+                ps.setInt(4, quantity);
 
                 int status = ps.executeUpdate();
-
-                if (status > 0) {
-                   response.sendRedirect("showCart");
-                } else {
-                    response.sendRedirect("./showProduct.jsp");
-                }
+               if(status> 0) {                
+                response.sendRedirect("showCart");
+               } else {
+	                    response.sendRedirect("./showProduct.jsp");
+               }
+                
 
             } catch (Exception e) {
                 System.out.println("message" + e.getMessage());
