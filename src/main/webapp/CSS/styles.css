@@ -403,3 +403,11 @@ button {
 .review_right td {
 	width: 250px;
 }
+.icon {
+	text-align:center;
+
+	padding-left: 10px;
+}
+.icon i {
+	font-size: 30px;
+}

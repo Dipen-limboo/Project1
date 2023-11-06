@@ -9,6 +9,8 @@
 <meta charset="UTF-8">
 <title>Review Panel</title>
 <link rel="stylesheet" href="./CSS/styles.css">
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <jsp:include page="./Header/userHeader.jsp"></jsp:include>
@@ -44,18 +46,43 @@
     	<div>
     		<h4 style="font-weight: normal; padding: 10px 0 0 18px">YakthungIpa</h4>
     		<p style="font-size: 12px">Purchased on <%= order.getDateOrder() %></p>
-    		<div style="display: flex; padding: 20px" class="table">
+    		<form method="post" action="get">
+    		<div style="display: flex; padding: 20px; width: 700px" class="table">
     			<table>
+    				<tr>
+    				<th>Product Image</th>
+    				<th>Product Name</th>
+    				<th style="">Review</th>
+    				</tr>
     				<tr>
     					<input type= "hidden" name = "orderDetails_id" value="<%= order.getOrderDetails_id() %>">
     					<input type ="hidden" name="user_id" value="<%= order.getUserId() %>">
-    					<td><img src="data:image/jpeg;base64, <%= order.getProductImage() %>" style="height:100px; width: 100px"></td>
-    					<td><%= order.getProductName() %></td>
-    					
+    					<td style="text-align:center"><img src="data:image/jpeg;base64, <%= order.getProductImage() %>" style="height:100px; width: 100px"></td>
+    					<td style="text-align:center"><%= order.getProductName() %></td>
+						<td class="icon">
+						<!-- <i class="far fa-star"></i>
+						<i class="far fa-star"></i>
+						<i class="far fa-star"></i>
+						<i class="far fa-star"></i>
+						<i class="far fa-star"></i> -->
+						<% 
+						String value = "<i class='far fa-star'></i>";
+						for (int i = 0; i < 5; i++) {
+						%>
+						<%= value %>
+						<%
+							} 
+						%>
+						</td>  					
     					<!-- <td style="padding-left:20px"><a href="reviewPanel.jsp"><button style="text-align: center">Review</button></a></td> -->
     				</tr>
     			</table>
-    		</div>
+    		</div> 
+    		<br>
+    		<p style="font-weight: bolder">Add comment </p>
+    		<textarea rows="7" cols="8" style="width: 500px" placeholder="Write your comment"></textarea><br>
+    		<button>Send</button>
+    		</form>
     	</div>
     	<%
     			}
