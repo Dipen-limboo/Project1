@@ -1,5 +1,7 @@
 package product;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Product {
@@ -7,8 +9,46 @@ public class Product {
     private String product_name, product_image, product_keyword, product_description;
     private double product_price;
     private int product_quantity;
-    private List<String> colors; 
+    private String type;
+    private Timestamp  dateOrder;
+    private String firstname, lastname;
+
+	private List<String> colors; 
     private List<String> size;
+    
+    
+    public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Timestamp getDateOrder() {
+        return dateOrder;
+    }
+
+    public void setDateOrder(Timestamp dateOrder) {
+        this.dateOrder = dateOrder;
+    }
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
 
     public int getProductID() {
         return product_id;
@@ -81,6 +121,8 @@ public class Product {
 	public void setSize(List<String> size) {
 		this.size = size;
 	}
+
+
 
    
 }

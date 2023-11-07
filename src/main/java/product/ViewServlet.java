@@ -39,7 +39,7 @@ public class ViewServlet extends HttpServlet {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false", "root", "0564");
 
             String sql = "SELECT p.product_id, p.product_name, p.product_image, p.product_price, p.product_keyword, p.product_description, st.quantity " +
-                    "FROM products AS p JOIN stocks st ON p.product_id = st.product_id";
+                    "FROM products AS p JOIN stocks st ON p.product_id = st.product_id where st.type = 'buy'";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 

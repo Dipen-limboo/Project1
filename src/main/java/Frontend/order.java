@@ -75,12 +75,14 @@ public class order extends HttpServlet {
 				if (status > 0) {
 					if(productId.length == quantity.length)
 					 for (int i = 0; i < productId.length; i++) {
-					PreparedStatement stocksPs = conn.prepareStatement("insert into stocks (product_id, user_id, quantity, type) values (?,?,?,?)");
+					PreparedStatement stocksPs = conn.prepareStatement("insert into stocks (product_id, user_id, quantity, type, date) values (?,?,?,?,?)");
 					stocksPs.setInt(1, Integer.parseInt(productId[i]));
 					stocksPs.setInt(2, userId);
 					
 					stocksPs.setInt(3, Integer.parseInt(quantity[i]));
 					stocksPs.setString(4, type);
+					Timestamp currentTime = new Timestamp(new Date().getTime());
+			        stocksPs.setTimestamp(5, currentTime);
 					int stockProcess = stocksPs.executeUpdate();
 					
 					if(stockProcess > 0) {
