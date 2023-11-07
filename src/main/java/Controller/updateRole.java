@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class updateRole
@@ -19,7 +20,10 @@ public class updateRole extends HttpServlet {
    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		
+		HttpSession session = request.getSession();
+        User uusr = (User) session.getAttribute("user");
+
+        if (uusr != null) {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String role = request.getParameter("role");
 		User usr = new User();
@@ -42,6 +46,9 @@ public class updateRole extends HttpServlet {
 			System.out.println("Message: "+e.getMessage());
 			e.printStackTrace();
 		}
+	} else {
+        response.sendRedirect("./login.jsp?source=cartServlet");
+    }
 	}
 
 }

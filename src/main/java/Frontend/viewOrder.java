@@ -27,7 +27,11 @@ public class viewOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
+        User usr = (User) session.getAttribute("user");
+
+        if (usr != null) {
 		int id = (Integer)session.getAttribute("userId");
 		
 		
@@ -66,6 +70,9 @@ public class viewOrder extends HttpServlet {
 			System.out.println("Message: " +e.getMessage());
 			e.printStackTrace();
 		}
+	} else {
+        response.sendRedirect("./login.jsp?source=cartServlet");
+    }
 	}
 	
 }

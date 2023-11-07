@@ -20,7 +20,11 @@ public class profie extends HttpServlet {
 		response.setContentType("text/html");
 		
 		HttpSession session = request.getSession();
-		int id = (Integer) session.getAttribute("userId");
+		User uusr = (User) session.getAttribute("user");
+
+        if (uusr != null) {
+        	int id = (Integer) session.getAttribute("userId");
+        
 		
 		Connection conn = null;
 		PreparedStatement ps = null; 
@@ -47,5 +51,8 @@ public class profie extends HttpServlet {
 			System.out.println("Message: " +e.getMessage());
 			e.printStackTrace();
 		}
+        } else {
+            response.sendRedirect("./login.jsp?source=cartServlet");
+        }
 	}
 }

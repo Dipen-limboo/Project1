@@ -11,6 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Controller.User;
 
 
 @WebServlet("/RemoveCart")
@@ -21,7 +24,10 @@ public class RemoveCart extends HttpServlet {
 		
 		    response.setContentType("text/html");
 		    PrintWriter out = response.getWriter();
-		    
+		    HttpSession session = request.getSession();
+	        User usr = (User) session.getAttribute("user");
+
+	        if (usr != null) {
 		    int id = Integer.parseInt(request.getParameter("cart_id"));
 		    
 		    try {
@@ -47,6 +53,9 @@ public class RemoveCart extends HttpServlet {
 		        System.out.println("message" + e.getMessage());
 		        e.printStackTrace();
 		    }
-			}
-		}
+	   } else {
+	            response.sendRedirect("./login.jsp?source=cartServlet");
+	     }
+	}
+}
 

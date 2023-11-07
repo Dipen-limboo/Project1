@@ -12,6 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Controller.User;
 
 @WebServlet("/UpdateServlet")
 public class UpdateServlet extends HttpServlet {
@@ -20,7 +23,10 @@ public class UpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
+        User usr = (User) session.getAttribute("user");
 
+        if (usr != null) {
         String name = request.getParameter("product_name");
         String image = request.getParameter("product_image");
         String priceStr = request.getParameter("product_price");
@@ -156,6 +162,9 @@ public class UpdateServlet extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+        } else {
+            response.sendRedirect("./login.jsp?source=cartServlet");
         }
     }
 }

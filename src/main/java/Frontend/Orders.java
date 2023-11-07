@@ -3,13 +3,19 @@ package Frontend;
 import java.sql.Date;
 
 public class Orders {
-	private int orderId, UserId, quantity;
+	private int orderId, UserId, quantity, productId;
+
 	private String phone, Location;
 	private Date dateOrder;
 	private String productImage, productName;
 	private int orderDetails_id;
 	
-	
+	public int getProductId() {
+		return productId;
+	}
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
 	public int getOrderDetails_id() {
 		return orderDetails_id;
 	}

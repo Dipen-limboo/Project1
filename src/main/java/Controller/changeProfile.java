@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/changeProfile")
@@ -16,8 +17,12 @@ public class changeProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-response.setContentType("text/html");
+		response.setContentType("text/html");
 		
+		HttpSession session = request.getSession();
+        User usr = (User) session.getAttribute("user");
+
+        if (usr != null) {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String fname = request.getParameter("fname");
 		String lname = request.getParameter("lname");
@@ -45,6 +50,9 @@ response.setContentType("text/html");
 			System.out.println("Message: " +e.getMessage());
 			e.printStackTrace();
 		}
+        } else {
+            response.sendRedirect("./login.jsp?source=cartServlet");
+        }
 	}
 
 }

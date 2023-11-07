@@ -16,7 +16,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import Controller.User;
 import Controller.UserDao;
 import Frontend.Orders;
 
@@ -26,15 +28,18 @@ public class review extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		
-		int id = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
+        User usr = (User) session.getAttribute("user");
+        
+        if (usr != null) {
+		int id = (Integer) session.getAttribute("userId");
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs= null;
 		
 		try {
 			conn = UserDao.getConnection();
-			ps = conn.prepareStatement("select o.order_date, p.product_image, p.product_name, od.user_id, od.orderDetails_id from order_details as od join orders o on od.order_id=o.order_id join products p on od.product_id = p.product_id where od.user_id=?; ");
+			ps = conn.prepareStatement("select o.order_date, p.product_id, p.product_image, p.product_name, od.user_id, od.orderDetails_id from order_details as od join orders o on od.order_id=o.order_id join products p on od.product_id = p.product_id where od.user_id=?; ");
 			ps.setInt(1, id);
 			
 			rs = ps.executeQuery();
@@ -43,6 +48,7 @@ public class review extends HttpServlet {
 			while (rs.next()) {
 				order = new Orders();
 				order.setUserId(id);
+				
 				order.setOrderDetails_id(rs.getInt("orderDetails_id"));
 				order.setDateOrder(rs.getDate("order_date"));
 				Blob blob = rs.getBlob("product_image");
@@ -65,5 +71,8 @@ public class review extends HttpServlet {
 			System.out.println("Message: " +e.getMessage());
 			e.printStackTrace();
 		} 
+        } else {
+            response.sendRedirect("./login.jsp?source=cartServlet");
+        }
 	}
 }

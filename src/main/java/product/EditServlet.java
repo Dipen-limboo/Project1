@@ -18,6 +18,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Controller.User;
 
 @WebServlet("/EditServlet")
 public class EditServlet extends HttpServlet {
@@ -29,7 +32,11 @@ public class EditServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PreparedStatement ps = null;
         ResultSet rs=null;
-        
+        HttpSession session = request.getSession();
+        User usr = (User) session.getAttribute("user");
+
+        if (usr != null) {
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false", "root", "0564");
@@ -119,6 +126,9 @@ public class EditServlet extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+        } else {
+            response.sendRedirect("./login.jsp?source=cartServlet");
         }
     }
 }

@@ -10,7 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import Controller.User;
 import Controller.UserDao;
 
 @WebServlet("/cartRemove")
@@ -19,6 +21,10 @@ public class cartRemove extends HttpServlet {
        
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+        User uusr = (User) session.getAttribute("user");
+
+        if (uusr != null) {
 		try {
 			Connection conn = UserDao.getConnection();
 			PreparedStatement ps = conn.prepareStatement("delete from carts");
@@ -31,6 +37,9 @@ public class cartRemove extends HttpServlet {
 			System.out.println("Message:  " +e.getMessage());
 			e.printStackTrace();
 		}
+	  } else {
+          response.sendRedirect("./login.jsp?source=cartServlet");
+      }
 	}
 
 

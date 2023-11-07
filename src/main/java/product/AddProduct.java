@@ -29,7 +29,10 @@ public class AddProduct extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
+        User usr = (User) session.getAttribute("user");
 
+        if (usr != null) {
         String pname = request.getParameter("product_name");
         Part file = request.getPart("product_image");
         InputStream ins = file.getInputStream();
@@ -82,7 +85,7 @@ public class AddProduct extends HttpServlet {
                             prss.executeBatch();
                         }
                         
-                        HttpSession session =request.getSession();
+                        
                         int userId = (Integer) session.getAttribute("userId");
                         
                         String insertStockSQL = "INSERT INTO stocks (product_id, buyQuantity, type, user_id) VALUES (?, ?, ?)";
@@ -114,6 +117,9 @@ public class AddProduct extends HttpServlet {
             e.printStackTrace();
             out.print("An error occurred: " + e.getMessage());
             response.sendRedirect("./addProduct.jsp");
+        }
+        } else {
+            response.sendRedirect("./login.jsp?source=cartServlet");
         }
     }
 }

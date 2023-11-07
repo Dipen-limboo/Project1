@@ -11,6 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Controller.User;
 
 /**
  * Servlet implementation class cartUpdate
@@ -21,7 +24,10 @@ public class cartUpdate extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		
+		HttpSession session = request.getSession();
+        User uusr = (User) session.getAttribute("user");
+
+        if (uusr != null) {
 		int cartId = Integer.parseInt(request.getParameter( "cart_id"));
 		int quantity = Integer.parseInt(request.getParameter( "quantity"));
 		
@@ -51,6 +57,9 @@ public class cartUpdate extends HttpServlet {
 			System.out.println("message" +e.getMessage());
 			e.printStackTrace();
 		}
+        } else {
+            response.sendRedirect("./login.jsp?source=cartServlet");
+        }
 	}
 
 }

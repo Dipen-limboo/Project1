@@ -18,6 +18,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Controller.User;
 
 @WebServlet("/ViewServlet")
 public class ViewServlet extends HttpServlet {
@@ -28,6 +31,7 @@ public class ViewServlet extends HttpServlet {
         Connection conn = null;
         response.setContentType("text/html;charset=UTF-8");
 
+       
         List<Product> productList = new ArrayList<>();
 
         try {
@@ -99,6 +103,7 @@ public class ViewServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
+        
     }
 }
 

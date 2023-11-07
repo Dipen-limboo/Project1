@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/editProfile")
@@ -18,7 +19,10 @@ public class editProfile extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		
+		HttpSession session = request.getSession();
+        User uusr = (User) session.getAttribute("user");
+
+        if (uusr != null) {
 		int id = Integer.parseInt(request.getParameter("id"));
 		
 		Connection conn = null;
@@ -46,6 +50,9 @@ public class editProfile extends HttpServlet {
 			System.out.println("Message: " +e.getMessage());
 			e.printStackTrace();
 		}
+        } else {
+            response.sendRedirect("./login.jsp?source=cartServlet");
+        }
 	}
 }
 

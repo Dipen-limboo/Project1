@@ -13,7 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import Controller.User;
 import Controller.UserDao;
 
 
@@ -24,7 +26,10 @@ public class order extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		
+		HttpSession session = request.getSession();
+        User usr = (User) session.getAttribute("user");
+
+        if (usr != null) {
 		int userId = Integer.parseInt(request.getParameter("user_id"));
 		String[] productId= request.getParameterValues("product_id");
 		String[] cartId = request.getParameterValues("cart_id");
@@ -104,6 +109,9 @@ public class order extends HttpServlet {
 			System.out.println("Message: " +e.getMessage());
 			e.printStackTrace();
 		}
+        } else {
+            response.sendRedirect("./login.jsp?source=cartServlet");
+        }
 	}
 
 }

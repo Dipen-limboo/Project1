@@ -46,7 +46,7 @@
     	<div>
     		<h4 style="font-weight: normal; padding: 10px 0 0 18px">YakthungIpa</h4>
     		<p style="font-size: 12px">Purchased on <%= order.getDateOrder() %></p>
-    		<form method="post" action="get">
+    		<form method="post" action="userReview" id="reviewForm">
     		<div style="display: flex; padding: 20px; width: 700px" class="table">
     			<table>
     				<tr>
@@ -55,33 +55,32 @@
     				<th style="">Review</th>
     				</tr>
     				<tr>
-    					<input type= "hidden" name = "orderDetails_id" value="<%= order.getOrderDetails_id() %>">
-    					<input type ="hidden" name="user_id" value="<%= order.getUserId() %>">
+    					
     					<td style="text-align:center"><img src="data:image/jpeg;base64, <%= order.getProductImage() %>" style="height:100px; width: 100px"></td>
     					<td style="text-align:center"><%= order.getProductName() %></td>
 						<td class="icon">
-						<!-- <i class="far fa-star"></i>
-						<i class="far fa-star"></i>
-						<i class="far fa-star"></i>
-						<i class="far fa-star"></i>
-						<i class="far fa-star"></i> -->
+						
 						<% 
-						String value = "<i class='far fa-star'></i>";
-						for (int i = 0; i < 5; i++) {
-						%>
-						<%= value %>
-						<%
-							} 
-						%>
+			                String value = "<i class='far fa-star'></i>";
+			                for (int i = 0; i < 5; i++) {
+			                %>
+			                <span class="star" data-value="<%= i + 1 %>"><%= value %></span>
+			                <%
+			                } 
+			                %>
 						</td>  					
     					<!-- <td style="padding-left:20px"><a href="reviewPanel.jsp"><button style="text-align: center">Review</button></a></td> -->
     				</tr>
     			</table>
     		</div> 
+    		<input type= "hidden" name = "orderDetails_id" value="<%= order.getOrderDetails_id() %>">
+    		<input type= "hidden" name = "product_id" value="<%= order.getProductId() %>">
+    		<input type ="hidden" name="user_id" value="<%= order.getUserId() %>">
+    		 <input type="hidden" name="rating" id="rating">
     		<br>
     		<p style="font-weight: bolder">Add comment </p>
-    		<textarea rows="7" cols="8" style="width: 500px" placeholder="Write your comment"></textarea><br>
-    		<button>Send</button>
+    		<textarea rows="7" cols="8" style="width: 500px" placeholder="Write your comment" name ="comment"></textarea><br>
+    		<button type="button" onclick="submitForm()">Send</button>
     		</form>
     	</div>
     	<%
@@ -91,5 +90,34 @@
      </div> 
 </main>
 <jsp:include page="./Footer/footer.jsp"></jsp:include>
+<script>
+    function submitForm() {
+        var rating = document.querySelector('input[name="rating"]').value;
+        if (rating !== "") {
+            document.forms["reviewForm"].submit();
+        } else {
+            alert("Please select a rating before submitting.");
+        }
+    }
+
+    var stars = document.querySelectorAll('.star');
+
+    stars.forEach(function(star) {
+        star.addEventListener('click', function() {
+            var value = star.getAttribute('data-value');
+            document.querySelector('input[name="rating"]').value = value;
+
+            // Update star colors based on the user's selection
+            stars.forEach(function(s) {
+                if (s.getAttribute('data-value') <= value) {
+                    s.innerHTML = '<i class="fas fa-star"></i>';
+                } else {
+                    s.innerHTML = '<i class="far fa-star"></i>';
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 </html>

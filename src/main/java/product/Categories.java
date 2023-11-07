@@ -17,7 +17,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import Controller.User;
 import Controller.UserDao;
 
 /**
@@ -29,7 +31,7 @@ public class Categories extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		
+
 		String keyword = request.getParameter("product_keyword").toUpperCase();
 	
 		Connection conn = null;

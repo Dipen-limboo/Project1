@@ -26,7 +26,7 @@
     	String source = request.getParameter("source");
     	if (source != null && source.equals("cartServlet")) {
     	%>
-        <p style="text-align: center; font-size: 20px; font-weight: bold">(You need to log in to access your cart.)</p>
+        <p style="text-align: center; font-size: 20px; font-weight: bold">(You need to log in to access)</p>
     		<% } %>
             <h4>Log In</h4> <hr> <br>
             <div class="container" style="margin-left: 2rem">

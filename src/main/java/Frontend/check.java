@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Controller.User;
 import Controller.UserDao;
 
 @WebServlet("/check")
@@ -23,6 +24,9 @@ public class check extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 
 		HttpSession session = request.getSession();
+        User usr = (User) session.getAttribute("user");
+
+        if (usr != null) {
 		int id = (Integer) session.getAttribute("userId");
 		
         try {
@@ -61,5 +65,8 @@ public class check extends HttpServlet {
         	System.out.println("message" +e.getMessage());
         	e.printStackTrace();
         }
+	} else {
+        response.sendRedirect("./login.jsp?source=cartServlet");
+    }
 	}
 }
