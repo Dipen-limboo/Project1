@@ -416,7 +416,7 @@ button {
 .transactionPanel {
 	display: flex;
 	flex-wrap: wrap;
-	width: 100%;
+	width: 1205px;
 	margin-top:1px;
 }
 
