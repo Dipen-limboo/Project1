@@ -2,7 +2,7 @@
 
 /* General styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: cursive;
     margin: 0;
     padding: 0;
 
@@ -76,7 +76,7 @@ main {
 	margin-top:1rem;
 	color: green;
 	padding: 10px;
-	height: 220px;
+	height: 230px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     text-align: center;
@@ -410,4 +410,61 @@ button {
 }
 .icon i {
 	font-size: 30px;
+}
+
+/*dashboard admin panel*/
+.transactionPanel {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	margin-top:1px;
+}
+
+.dashboard {
+	padding: 10px 25px;
+    background-color: #333;
+    color: white;
+    width: 20%;
+   
+}
+
+.dashboard h2 {
+	font-size: 16px;
+    font-weight: 600;
+    margin: 10px 0px;
+}
+
+.dashboard ul {
+	    padding-left: 13px;
+}
+
+.dashboard a{
+	    font-size: 14px;
+}
+
+.dashboard li:hover {
+
+    padding: 5px 20px;
+    text-align: left;
+    transition: 0.5s ease-out;
+}
+
+.dashboard-content {
+    background-color: #333;
+    width: 75.2%;
+    margin-left: 5px;
+    color: white;
+}
+
+.dashboard-content table {
+	margin: auto;
+	width: 95%;
+}
+
+.dashboard-content h2 {
+    padding: 5px 0 12px 15px;
+}
+
+.dashboard-content th, td {
+	text-align:center;
 }

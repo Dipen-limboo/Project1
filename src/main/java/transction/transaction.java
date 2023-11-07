@@ -32,48 +32,50 @@ public class transaction extends HttpServlet {
 		ResultSet rs = null;
 		List <Product> list = new ArrayList<>();
 		try {
-			conn = UserDao.getConnection();
-			ps = conn.prepareStatement("select p.product_image, p.product_name, s.product_id, s.quantity, s.type, s.date, u.fname, u.lname\r\n"
-					+ "from stocks as s\r\n"
-					+ "join products p on p.product_id = s.product_id\r\n"
-					+ "join users u on u.id = s.user_id\r\n"
-					+ "order by s.date desc; ");
-			rs= ps.executeQuery();
-			Product pro = new Product(); 
-			while(rs.next()) {
-				pro.setProductID(rs.getInt("product_id"));
-				
-					Blob blob = rs.getBlob("product_image");
-	                InputStream ins = blob.getBinaryStream();
-	                ByteArrayOutputStream os = new ByteArrayOutputStream();
-	                byte[] byt = new byte[4096];
-	                int byteread = -1;
-	                while ((byteread = ins.read(byt)) != -1) {
-	                    os.write(byt, 0, byteread);
-	                }
-	                byte[] imageByte = os.toByteArray();
-	                String image = Base64.getEncoder().encodeToString(imageByte);
-                pro.setProductImage(image);
-                pro.setProductName(rs.getString("product_name"));
-            
-                pro.setProductQuantity(rs.getInt("quantity"));
-               
-                pro.setType(rs.getString("type"));
-               
-                pro.setDateOrder(rs.getTimestamp("date"));
-              
-                pro.setFirstname(rs.getString("fname"));
-                pro.setLastname(rs.getString("lname"));
-                
-                list.add(pro);
-			}
-			request.setAttribute("stocks", list);
-			request.getRequestDispatcher("allTransaction.jsp").forward(request, response);
+		    conn = UserDao.getConnection();
+		    ps = conn.prepareStatement("select p.product_image, p.product_name, s.product_id, s.quantity, s.type, s.date, u.fname, u.role, u.lname\r\n"
+		            + "from stocks as s\r\n"
+		            + "join products p on p.product_id = s.product_id\r\n"
+		            + "join users u on u.id = s.user_id\r\n"
+		            + "order by s.date desc; ");
+		    rs = ps.executeQuery();
+		    
+		    while (rs.next()) {
+		        Product pro = new Product(); // Create a new Product object for each record
+		        
+		        pro.setProductID(rs.getInt("product_id"));
+		        
+		        Blob blob = rs.getBlob("product_image");
+		        InputStream ins = blob.getBinaryStream();
+		        ByteArrayOutputStream os = new ByteArrayOutputStream();
+		        byte[] byt = new byte[4096];
+		        int byteread = -1;
+		        
+		        while ((byteread = ins.read(byt)) != -1) {
+		            os.write(byt, 0, byteread);
+		        }
+		        
+		        byte[] imageByte = os.toByteArray();
+		        String image = Base64.getEncoder().encodeToString(imageByte);
+		        
+		        pro.setProductImage(image);
+		        pro.setProductName(rs.getString("product_name"));
+		        pro.setProductQuantity(rs.getInt("quantity"));
+		        pro.setType(rs.getString("type"));
+		        pro.setDateOrder(rs.getTimestamp("date"));
+		        pro.setFirstname(rs.getString("fname"));
+		        pro.setLastname(rs.getString("lname"));
+		        pro.setRole(rs.getString("role"));
+		        
+		        list.add(pro);
+		    }
+		    
+		    request.setAttribute("stocks", list);
+		    request.getRequestDispatcher("allTransaction.jsp").forward(request, response);
 		} catch (Exception e) {
-	        System.out.print("message" + e.getMessage());
-	        e.printStackTrace();
-	    }
-		
+		    System.out.print("message: " + e.getMessage());
+		    e.printStackTrace();
+		}
 		
 	}
 

@@ -41,7 +41,7 @@
         }
     }
     %>
-</main>
+</main><br><br>
 <jsp:include page="./Footer/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -11,8 +11,7 @@
 <body>
 	<header class = "heads">
         <a href="./admin.jsp" style="color:white; text-decoration:none">
-        <h1 style="font-size: 30px; padding-left: 50px; font-family:Times New Roman"> Yakthungs</h1>
-        </a>
+		<h1 style="letter-spacing: 2px; margin-left: 30px;"><span style="color: #333; background-color: white; border-radius: 50%; padding:5px"> Y</span>akthungs</h1>        </a>
         <nav>
             <ul>
                 <li><a href="admin.jsp">Dashboard</a></li>

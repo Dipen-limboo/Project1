@@ -12,6 +12,15 @@ public class Product {
     private String type;
     private Timestamp  dateOrder;
     private String firstname, lastname;
+    private String role;
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	private List<String> colors; 
     private List<String> size;
