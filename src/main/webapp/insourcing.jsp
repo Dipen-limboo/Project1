@@ -1,18 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "java.util.List" %>
-<%@ page import = "Frontend.Orders" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="product.Product" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>User Order</title>
+<title>All Transaction</title>
 <link rel="stylesheet" href="./CSS/styles.css">
-
 </head>
 <body>
 <jsp:include page="./Header/header.jsp"></jsp:include>
-<div class="transactionPanel">
+	<div class="transactionPanel">
 		<div class ="dashboard">
 			<section class="product-management" id="Dashboard">
 	            <h2>Product Management</h2>
@@ -46,33 +45,40 @@
 	            </ul>
 	        </section>
 	        </div>
-			<div class="dashboard-content"> 
-	      		<h2>All Products</h2>
-				<table>
-					<tr>
-						<th style="">Order Id </th>
-						<th style="">Location</th>
-						<th style="">Phone</th>
-						<th style="">Order Date </th>
-					</tr>
-					<% List <Orders> list = (List <Orders>) request.getAttribute("orderList");
-						if (list != null && !list.isEmpty()){
-							for (Orders order: list){
-					%>
-					<tr>
-					
-						<td><%= order.getOrderId() %></td>
-						<td><%= order.getLocation() %></td>
-						<td><%= order.getPhone() %></td>
-						<td><%= order.getDateOrder() %></td>
-					
-					</tr>
-					<%
-							}
-						}
-					%>
-				</table>
-	</div>
+	        <div class="dashboard-content">
+	        <h2>In-Sourcing Transactions</h2>
+	        <table>
+	        	<tr>
+	        		
+	        		<th>Product Id</th>
+	        		<!-- <th>Product Image</th> -->
+	        		<th>Product Name</th>
+	        		<th>Types</th>
+	        		<th>Quantity</th>
+	        		<th>User name</th>
+	        		<th>Date</th>
+	        		
+	        	</tr>
+	        	<% 
+	        	 ArrayList<Product> productList = (ArrayList<Product>) request.getAttribute("stocks");
+	            if (productList != null) {
+	                for (Product product : productList) {
+	        	%>
+	        	<tr>
+	        		<td><%= product.getProductID() %></td>
+	        	<%-- 	<td>
+					<img src="data:image/jpeg;base64, <%= product.getProductImage() %>" alt="here is an image" style="height: 100px; width: 150px; margin-left:15px">
+					</td> --%>
+	        		<td><%= product.getProductName() %></td>
+	        		<td><%= product.getType() %></td>
+	        		<td><%= product.getProductQuantity() %></td>
+	        		<td><%= product.getFirstname() %> <%= product.getLastname() %></td>
+	        		<td><%= product.getDateOrder() %></td>
+	        	</tr>
+	        	<%	}
+	        	}%>
+	        </table>
+	        </div>
 	</div>
 <jsp:include page="./Footer/footer.jsp"></jsp:include>
 </body>

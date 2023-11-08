@@ -40,8 +40,8 @@
 	            <h2>Transaction Management</h2>
 	            <ul>
 	                <li><a href="transaction" style="color: white; text-decoration: none">All transaction</a></li>
-	                <li><a href="" style="color: white; text-decoration: none">In-Sourcing transaction</a></li>
-	                <li><a href="" style="color: white; text-decoration: none">Out-Sourcing transaction</a></li>
+	                <li><a href="insourcing" style="color: white; text-decoration: none">In-Sourcing transaction</a></li>
+	                <li><a href="outsourcing" style="color: white; text-decoration: none">Out-Sourcing transaction</a></li>
 	            </ul>
 	        </section>
 	        </div>
@@ -55,8 +55,8 @@
 	        		<th>Types</th>
 	        		<th>Quantity</th>
 	        		<th>User name</th>
+					<th>Date</th>
 	        		<th>Role</th>
-	        		
 	        	</tr>
 	        	<% 
 	        	 ArrayList<Product> productList = (ArrayList<Product>) request.getAttribute("stocks");
@@ -72,6 +72,7 @@
 	        		<td><%= product.getType() %></td>
 	        		<td><%= product.getProductQuantity() %></td>
 	        		<td><%= product.getFirstname() %> <%= product.getLastname() %></td>
+	        		<td><%= product.getDateOrder() %></td>
 	        		<td><%= product.getRole() %></td>
 	        	</tr>
 	        	<%	}

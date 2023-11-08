@@ -96,12 +96,39 @@ public class order extends HttpServlet {
 							System.out.println("Cannot delete the cart");
 							}
 					}
+					for (int x = 0; x < productId.length; x++) {
+			            int productIdValue = Integer.parseInt(productId[x]);
+			            int orderQuantity = Integer.parseInt(quantity[x]);
+			            int remainingQuantity = 0;
+
+			            PreparedStatement stockPs = conn.prepareStatement("SELECT quantity FROM stocks WHERE type = 'buy' AND product_id = ?");
+			            stockPs.setInt(1, productIdValue);
+			            ResultSet stockRs = stockPs.executeQuery();
+
+			            while (stockRs.next()) {
+			                remainingQuantity = stockRs.getInt("quantity");
+			            }
+
+			            
+			            int newRemainingQuantity = remainingQuantity - orderQuantity;
+
+			            PreparedStatement updateProductPs = conn.prepareStatement("UPDATE products SET remain = ? WHERE product_id = ?");
+			            updateProductPs.setInt(1, newRemainingQuantity);
+			            updateProductPs.setInt(2, productIdValue);
+			            int stats = updateProductPs.executeUpdate();
+			        }
+					
 					 
 				}
 				
 
-						
-				out.println("You have places order!!!");
+					out.println("You have places order!!");
+					request.getRequestDispatcher("sucessfullyOrder.jsp").forward(request, response);		
+			/*
+			 * out.println("You have places order!!!");
+			 * request.getRequestDispatcher("remaining?quantity="+quantity+"&&product_id="+
+			 * productId).forward(request, response);
+			 */
 				} 
 				else {
 					out.println("Your ordered has been cancelled!!!");

@@ -40,10 +40,10 @@
 	        </section>
 	        <section class="stock-management">
 	            <h2>Transaction Management</h2>
-	            <ul>
+	             <ul>
 	                <li><a href="transaction" style="color: white; text-decoration: none">All transaction</a></li>
-	                <li><a href="" style="color: white; text-decoration: none">In-Sourcing transaction</a></li>
-	                <li><a href="" style="color: white; text-decoration: none">Out-Sourcing transaction</a></li>
+	                <li><a href="insourcing" style="color: white; text-decoration: none">In-Sourcing transaction</a></li>
+	                <li><a href="outsourcing" style="color: white; text-decoration: none">Out-Sourcing transaction</a></li>
 	            </ul>
 	        </section>
 	        </div>
@@ -52,15 +52,15 @@
 	       
 		    <table >
 		        <tr>
-		            <th>Name</th>
+		            <th style="width:150px">Name</th>
 		            <th>Image</th>
 		            <th>Price</th>
-		            <th>Quantity</th>
 		            <th>Keywords</th>
-		            <th>Description</th>
+		          <!--   <th style="width:140px">Description</th> -->
 		            <th>Colors</th>
 		            <th>Sizes</th>
-		            <th colspan="2">Action</th>
+		            <th style="padding-right: 10px;">Edit</th>
+		            <th>Delete</th>
 		            
 		        </tr>
 		        <%
@@ -70,12 +70,11 @@
 		        %>
 		        <tr>
 		            <td><%= product.getProductName() %></td>
-		            <td><img src="data:image/jpeg;base64, <%= product.getProductImage() %>" alt="Product-image" style="height: 100px; width: 250px"></td>
+		            <td><img src="data:image/jpeg;base64, <%= product.getProductImage() %>" alt="Product-image" ></td>
 		            <td><%= product.getProductPrice() %></td>
-		            <td><%= product.getProductQuantity() %> </td>
 		            <td><%= product.getProductKeyword() %></td>
-		            <td><%= product.getProductDescription() %></td>
-		            <%
+<%-- 		            <td><%= product.getProductDescription() %></td>
+ --%>		            <%
 		                for (String color : product.getColors()) {
 		            %>
 		            <td><%= color %></td>
@@ -89,8 +88,8 @@
 		            <%
 		                }
 		            %>
-		            <td><a href='EditServlet?product_id=<%= product.getProductID() %>' style="color: white; text-decoration: none; padding-right: 10px;">Edit</a></td>
-		            <td><a href='DeleteServlet?product_id=<%= product.getProductID() %>' style="color: white; text-decoration: none"><i class="fa-solid fa-x" style="color: #fafcff;"></i></a></td>
+		            <td><a href='EditServlet?product_id=<%= product.getProductID() %>' style="color: #333; text-decoration: none; padding-right: 10px;">Edit</a></td>
+		            <td><a href='DeleteServlet?product_id=<%= product.getProductID() %>' style="color: #333; text-decoration: none"><i class="fa-solid fa-x" style="color: #333;"></i></a></td>
 		        </tr>
 		        <%
 		                }

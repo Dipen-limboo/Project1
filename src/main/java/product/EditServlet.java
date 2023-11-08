@@ -32,10 +32,7 @@ public class EditServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PreparedStatement ps = null;
         ResultSet rs=null;
-        HttpSession session = request.getSession();
-        User usr = (User) session.getAttribute("user");
-
-        if (usr != null) {
+        
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -127,8 +124,6 @@ public class EditServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        } else {
-            response.sendRedirect("./login.jsp?source=cartServlet");
-        }
+       
     }
 }

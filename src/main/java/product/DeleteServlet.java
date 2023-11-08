@@ -22,10 +22,7 @@ public class DeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("html/text");
 		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession();
-	    User usr = (User) session.getAttribute("user");
-
-	    if (usr != null) {
+		
 		int id = Integer.parseInt(request.getParameter("product_id"));
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -44,9 +41,7 @@ public class DeleteServlet extends HttpServlet {
 			System.out.println("message" +e.getMessage());
 			e.printStackTrace();
 		}
-	  } else {
-            response.sendRedirect("./login.jsp?source=cartServlet");
-        }
+	  
 	}
 
 

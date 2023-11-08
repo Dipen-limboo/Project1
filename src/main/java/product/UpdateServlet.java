@@ -23,10 +23,7 @@ public class UpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
-        User usr = (User) session.getAttribute("user");
-
-        if (usr != null) {
+        
         String name = request.getParameter("product_name");
         String image = request.getParameter("product_image");
         String priceStr = request.getParameter("product_price");
@@ -163,8 +160,6 @@ public class UpdateServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        } else {
-            response.sendRedirect("./login.jsp?source=cartServlet");
-        }
+        
     }
 }

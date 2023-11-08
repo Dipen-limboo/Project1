@@ -20,7 +20,7 @@ body {
 
 
 .cate ul li a {
-	color:green;
+	color: #333;
 	text-decoration: none;	
 }
 
@@ -74,7 +74,10 @@ main {
 /* Front-end styles */
 .product {
 	margin-top:1rem;
-	color: green;
+	display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+	color: #333;
 	padding: 10px;
 	height: 230px;
     background-color: #f9f9f9;
@@ -141,11 +144,11 @@ ul li {
 }
 
 .footer {
-
+	
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 0.5rem;
+  
     
 }
 
@@ -171,6 +174,7 @@ ul li {
 	display: flex;
 	justify-content: space-evenly;
 	text-align: left;
+	padding-left: 10px;
 }
 
 
@@ -185,7 +189,7 @@ input[type="text"],
 input[type="file"],
 select,
 textarea {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -199,7 +203,7 @@ img {
 
 button {
     padding: 10px 20px;
-    background-color: green;
+    background-color: #333;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -416,7 +420,7 @@ button {
 .transactionPanel {
 	display: flex;
 	flex-wrap: wrap;
-	width: 1205px;
+	width: 1145px;
 	margin-top:1px;
 }
 
@@ -450,15 +454,15 @@ button {
 }
 
 .dashboard-content {
-    background-color: #333;
-    width: 75.2%;
+    background-color: white;
+    width: 856px;
     margin-left: 5px;
-    color: white;
+    color: #333;
 }
 
 .dashboard-content table {
 	margin: auto;
-	width: 95%;
+	width: 100%;
 }
 
 .dashboard-content h2 {
@@ -467,4 +471,20 @@ button {
 
 .dashboard-content th, td {
 	text-align:center;
+	width: 95px;
+	padding:5px;
 }
+
+.dashboard-content td {
+	padding-top: 10px;
+		
+}
+
+
+
+
+
+
+
+
+

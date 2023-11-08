@@ -45,18 +45,20 @@ public class AddProduct extends HttpServlet {
         
         String[] sizes = request.getParameterValues("size");
         String type= "buy";
+        int remain = 0;
 
         try (Connection conn = UserDao.getConnection()) {
             conn.setAutoCommit(false);
 
             // Insert into the products table
-            String insertProductSQL = "INSERT INTO products (product_name, product_image, product_price, product_keyword, product_description) VALUES (?, ?, ?, ?, ?)";
+            String insertProductSQL = "INSERT INTO products (product_name, product_image, product_price, product_keyword, product_description, remain) VALUES (?,?, ?, ?, ?, ?)";
             try (PreparedStatement ps = conn.prepareStatement(insertProductSQL, PreparedStatement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, pname);
                 ps.setBlob(2, ins);
                 ps.setDouble(3, pprice);
                 ps.setString(4, pkeyword);
                 ps.setString(5, pdescription);
+                ps.setInt(6, remain);
 
                 int status = ps.executeUpdate();
 
