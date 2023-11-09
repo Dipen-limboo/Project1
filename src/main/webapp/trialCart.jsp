@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Cart</title>
 <!-- <link rel="stylesheet" href="./CSS/styles.css"> -->
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -31,7 +31,8 @@
 				%>
 		<div style="display: flex;flex-direction: row;justify-content: space-between;padding: 20px 0;height: 100px;border-top: 1.5px solid #999;margin: 50px 35px 0 50px;border-bottom: 1.5px solid #999">
     		
-    		<input type="hidden" name ="user_id" value = <%= cart.getUser_id() %>">
+    		<input type="hidden" name ="user_id" value = "<%= cart.getUser_id() %>">
+    		<input type="hidden" name ="product_id" value = "<%= cart.getProduct_id() %>">
 			
 			<div style="text-align:center;display: flex;flex-direction: column;justify-content: center;">
 				<img src="data:image/jpeg;base64, <%= cart.getProductImage() %>" alt="Product-image" style = "height: 100px; width: 120px">
@@ -39,13 +40,17 @@
 			
 			<div style="text-align:left;display: flex;flex-direction: column;justify-content: center; width: 136px">
 				<p style="color: #333;font-weight: 550;"><%= cart.getProductKeyword() %></p>
-				<h4 style="font-size: 16px;font-weight: 600;color: #111;"><%= cart.getProduct_name() %><h4>
+				<h4 style="font-size: 16px;font-weight: 600;color: #111;padding-top:5px"><%= cart.getProduct_name() %><h4>
 			</div>
 			
-			<div style="padding-top: 39px;">
-				<a href="" style="text-decoration:none;font-size: 18px;">-  </a>
-				<input type="number" name= "quantity" value="<%= cart.getQuantity() %>" style="width:42px; text-align:center; height:15px;border: 1.5px solid black;border-radius: 5px;">
-				<a href=""style="text-decoration:none;font-size: 18px;"> +</a>
+			<div style="padding-top: 39px;display:flex; flex-direction:row"> 
+				<a href="diminishQuantity?product_id=<%=cart.getProduct_id() %>&&quantity=<%= cart.getQuantity() %>&&userid=<%= cart.getUser_id() %> " style="text-decoration:none;font-size: 18px;">-  </a>
+				<form action="cartQuantity" method="get">
+				<input type="hidden" name ="user_id" value="<%= cart.getUser_id() %>">
+    			<input type="hidden" name ="product_id" value = "<%= cart.getProduct_id() %>">
+				  <input type="number" name="quantity" value="<%= cart.getQuantity() %>" style="width:42px; text-align:center; height:15px; border: 1.5px solid black; border-radius: 5px;margin:0 5px;" onchange="this.form.submit()">
+				</form>
+				<a href="increasingQuantity?product_id=<%=cart.getProduct_id() %>&&quantity=<%= cart.getQuantity() %>&&userid=<%= cart.getUser_id() %> "style="text-decoration:none;font-size: 18px;"> +</a>
 			</div>
 			
 			<div style="text-align:center;display: flex;flex-direction: column;justify-content: center;">

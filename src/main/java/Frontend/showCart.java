@@ -39,7 +39,7 @@ public class showCart extends HttpServlet {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false",
                     "root", "0564");
 			PreparedStatement pss = conn.prepareStatement(
-	                 "SELECT c.cart_id, c.user_id, c.product_id, p.product_price, p.product_image, p.product_name, p.product_keyword, c.total_price"
+	                 "SELECT c.cart_id, c.user_id, c.quantity, c.product_id, p.product_price, p.product_image, p.product_name, p.product_keyword, c.total_price"
 	                 + "	                         FROM carts AS c JOIN products p ON c.product_id = p.product_id JOIN users u ON c.user_id = u.id WHERE c.user_id = ?;");
 	         pss.setInt(1, userID);
 	         List<Cart> list = new ArrayList<>();
@@ -54,7 +54,6 @@ public class showCart extends HttpServlet {
 	             cart.setTotalPrice(res.getDouble("total_price"));
 	             cart.setProduct_price(res.getInt("product_price"));
 	             cart.setProductKeyword(res.getString("product_keyword"));
-//	             cart.setProductImage(res.getString("product_image"));
 	            
 	             Blob blob = res.getBlob("product_image");
 	             InputStream ins = blob.getBinaryStream();
@@ -69,13 +68,7 @@ public class showCart extends HttpServlet {
                  
                  cart.setProductImage(image);
 	             cart.setProduct_name(res.getString("product_name"));
-	             
-	             PreparedStatement ps =  conn.prepareStatement("select quantity from carts where user_id = ?");
-	             ps.setInt(1, userID);
-	             ResultSet rs = ps.executeQuery();
-	             while(rs.next()) {
-	            	 cart.setQuantity(rs.getInt("quantity"));
-	             }
+	             cart.setQuantity(res.getInt("quantity"));
 	             
 	             list.add(cart);
 	             sumtotal += cart.getTotalPrice();
