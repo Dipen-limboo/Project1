@@ -34,12 +34,26 @@ public class diminishQuantity extends HttpServlet {
 		Connection conn = null; 
 		PreparedStatement ps = null;
 		int qty = quantity - 1;
+		if(qty <= 1) {
+			request.getRequestDispatcher("showCart").forward(request, response);
+		} else {
 		try {
 			conn = UserDao.getConnection();
-			ps = conn.prepareStatement("update carts set quantity = ? where product_id = ? and user_id = ? ");
+			PreparedStatement prs= conn.prepareStatement("select product_price from products where product_id = ?");
+			prs.setInt(1, productId);
+			
+			ResultSet rs = prs.executeQuery(); 
+			double price = 0.00;
+			while(rs.next()) {
+				price = rs.getDouble("product_price");
+			}
+			
+			double total = price * qty;
+			ps = conn.prepareStatement("update carts set quantity = ?, total_price=? where product_id = ? and user_id = ? ");
 			ps.setInt(1, qty);
-			ps.setInt(2, productId);
-			ps.setInt(3,  userId);
+			ps.setDouble(2, total);
+			ps.setInt(3, productId);
+			ps.setInt(4,  userId);
 			
 			int status = ps.executeUpdate();
 			if(status > 0 ) {
@@ -49,6 +63,7 @@ public class diminishQuantity extends HttpServlet {
 			System.out.println("message" +e.getMessage());
 			e.printStackTrace();
 		}
+	}
 	}
 }
 

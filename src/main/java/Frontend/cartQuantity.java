@@ -3,6 +3,7 @@ package Frontend;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,12 +23,26 @@ public class cartQuantity extends HttpServlet {
 		int userId = Integer.parseInt(request.getParameter("user_id"));
 		Connection conn = null; 
 		PreparedStatement ps = null;
+		if(quantity <= 1) {
+			request.getRequestDispatcher("showCart").forward(request, response);
+		} else {
 		try {
 			conn = UserDao.getConnection();
-			ps = conn.prepareStatement("update carts set quantity = ? where product_id = ? and user_id = ? ");
+			PreparedStatement prs= conn.prepareStatement("select product_price from products where product_id = ?");
+			prs.setInt(1, productId);
+			
+			ResultSet rs = prs.executeQuery(); 
+			double price = 0.00;
+			while(rs.next()) {
+				price = rs.getDouble("product_price");
+			}
+			
+			double total = price * quantity;
+			ps = conn.prepareStatement("update carts set quantity = ?, total_price=? where product_id = ? and user_id = ? ");
 			ps.setInt(1, quantity);
-			ps.setInt(2, productId);
-			ps.setInt(3,  userId);
+			ps.setDouble(2, total);
+			ps.setInt(3, productId);
+			ps.setInt(4,  userId);
 			
 			int status = ps.executeUpdate();
 			if(status > 0 ) {
@@ -38,5 +53,5 @@ public class cartQuantity extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
+	}
 }
