@@ -481,10 +481,164 @@ button {
 }
 
 
+.cartSection {
+	padding: 5px 0 10px 0; 
+	background-color:#ddd;
+}
 
+.cartForm {
+	min-height: 500px;
+    margin: auto;
+    width: 1000px;
+    background-color: #fff;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display:flex;
+    flex-direction: row;
+}
 
+.cartForm-leftside {
+	width:660px;
+}
+.leftside-header {
+	display: flex;
+   	flex-direction: row;
+    justify-content: space-between;
+    padding:20px 0 0 50px;
+}
 
+.leftside-header h2 {
+	color: #111; 
+	font-size: 24px; 
+	letter-spacing: 1.5px;
+}
 
+.leftside-header p {
+	padding:10px 50px 0 0;
+}
 
+.cartTable {
+	display: flex;
+ 	flex-direction: row;
+	justify-content: space-between;
+	padding: 20px 0;
+    height: 100px;
+    border-top: 1.5px solid #999;
+  	margin: 50px 35px 0 50px;
+	border-bottom: 1.5px solid #999;
+}
+.cartTable div {
+	text-align:center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
 
+.para {
+	text-align:left; 
+	width: 136px;
+}
 
+.para p {
+	color: #333;
+   	font-weight: 550;
+}
+
+.para h4 {
+	font-size: 16px;
+  	font-weight: 600;
+   	color: #111;
+}
+
+.cartTable div a {
+	text-decoration:none;
+	font-size: 18px;
+}
+.inputQuantity input{
+	width:42px; 
+	text-align:center; 
+	height:15px;
+	border: 1.5px solid black;
+	border-radius: 5px;
+}
+.removeCart a{
+	color: black; 
+	text-decoration: none;
+}
+.leftSide-footer {
+	display: flex;
+	flex-direction: row;
+	padding: 17px 47px;
+}
+.leftSide-footer a {
+	text-decoration: none; 
+	color:#333;
+}
+
+.cartForm-rightside {
+	width: 340px;
+    background-color: #ddd;
+    border-radius: 0 20px 20px 0;
+    color: #333;
+}
+
+.cartForm-rightside h2 {
+	color: #333;
+    font-size: 22px;
+    padding: 44px 0 0 50px;
+    letter-spacing: 1.5px;
+}
+
+.cartForm-rightside-content {
+	margin: 27px 17px 0 17px;
+    padding: 20px 10px;
+    border-top: 1.5px solid #999;
+    border-bottom: 1.5px solid #999;
+}
+
+.cartForm-rightside-header{
+	 display: flex;
+	 flex-direction: row;
+ 	 justify-content: space-between;
+ 	 font-weight: 400;font-size: 15px;
+ 	 padding: 0 0 10px 0;
+}
+
+.cartForm-rightside-shipping h3 {
+	font-weight: 550;
+	font-size: 16px;
+	padding: 0 0 10px 0;
+}
+.cartForm-rightside-shipping select {
+	height: 30px;
+    width: 286px;
+    text-align: center;
+    font-size: 15px;
+    color: #333;
+    font-family: cursive;
+}
+
+.cartForm-rightside-code h3{
+	font-weight: 550;
+	font-size: 16px;
+	padding: 10px 0 10px 0;
+}
+.cartForm-rightside-code input{
+	height: 29px;
+    width: 276px;
+    font-size: 15px;
+    padding-left: 10px;
+    color: #333;
+    font-family: cursive;
+}
+
+.cartForm-rightside-footer {
+	 display: flex;
+	 flex-direction: row;
+ 	 justify-content: space-between;
+ 	 font-weight: 400;font-size: 15px;
+ 	 padding:  10px 20px 10px 20px;
+}

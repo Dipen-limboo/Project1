@@ -39,7 +39,7 @@ public class showCart extends HttpServlet {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false",
                     "root", "0564");
 			PreparedStatement pss = conn.prepareStatement(
-	                 "SELECT c.cart_id, c.user_id, c.product_id, p.product_price, p.product_image, p.product_name, c.total_price"
+	                 "SELECT c.cart_id, c.user_id, c.product_id, p.product_price, p.product_image, p.product_name, p.product_keyword, c.total_price"
 	                 + "	                         FROM carts AS c JOIN products p ON c.product_id = p.product_id JOIN users u ON c.user_id = u.id WHERE c.user_id = ?;");
 	         pss.setInt(1, userID);
 	         List<Cart> list = new ArrayList<>();
@@ -53,6 +53,7 @@ public class showCart extends HttpServlet {
 	             
 	             cart.setTotalPrice(res.getDouble("total_price"));
 	             cart.setProduct_price(res.getInt("product_price"));
+	             cart.setProductKeyword(res.getString("product_keyword"));
 //	             cart.setProductImage(res.getString("product_image"));
 	            
 	             Blob blob = res.getBlob("product_image");
@@ -82,7 +83,7 @@ public class showCart extends HttpServlet {
 	
 	         request.setAttribute("cartList", list);
 	         request.setAttribute("sumtotal", sumtotal);
-	         request.getRequestDispatcher("./cart.jsp").forward(request, response);
+	         request.getRequestDispatcher("./trialCart.jsp").forward(request, response);
 	} catch (Exception e) {
 		System.out.println("message" +e.getMessage());
 		e.printStackTrace();

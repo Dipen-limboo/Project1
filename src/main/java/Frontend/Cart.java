@@ -8,11 +8,17 @@ public class Cart {
 	private double total_price;
 	private double product_price;
 	private String product_image;
-	private String product_name;
+	private String product_name, ProductKeyword;
+	
 	private String firstname;
 	private String lastname, email;
 	
-	
+	public String getProductKeyword() {
+		return ProductKeyword;
+	}
+	public void setProductKeyword(String productKeyword) {
+		ProductKeyword = productKeyword;
+	}
 	public String getFirstname() {
 		return firstname;
 	}
