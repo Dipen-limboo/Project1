@@ -95,6 +95,9 @@ public class order extends HttpServlet {
 							} else {
 							System.out.println("Cannot delete the cart");
 							}
+						PreparedStatement delete = conn.prepareStatement("delete from totals where user_id = ?");
+							delete.setInt(1, userId);
+							int deleteProcess = delete.executeUpdate();
 					}
 					for (int x = 0; x < productId.length; x++) {
 			            int productIdValue = Integer.parseInt(productId[x]);

@@ -86,10 +86,14 @@
 				
 				<div style=" padding: 8px 0;">
 					<h3 style="font-weight: 550;font-size: 16px;padding: 0 0 10px 0;">SHIPPING</h3>
-					<select name="shipping" style="height: 30px;width: 286px;text-align: center;font-size: 15px;color: #333;font-family: cursive;">
-					<option value="65">Standard-Delivery-Rs65</option>
-					<option value="75">Quick_Delivery_Rs75</option>
-					</select>
+					<form action="cartShipping" method="get">
+						<input type="hidden" name="total" value="<%= sumTotal %>">
+					    <select name="shipping" style="height: 30px;width: 286px;text-align: center;font-size: 15px;color: #333;font-family: cursive;" onchange="this.form.submit()">
+					        <option> Choose Shipping </option>
+					        <option value="65">Standard-Delivery-Rs65</option>
+					        <option value="75">Quick_Delivery_Rs75</option>
+					    </select>
+					</form>
 				</div>
 				
 				<div style="padding: 10px 0 19px 0;">
@@ -99,7 +103,8 @@
 			</div>
 			<div style="display: flex;flex-direction: row;justify-content: space-between;font-weight: 400;font-size: 15px;padding:  10px 20px 10px 20px;">
 				<h4 style="font-weight:550;">Total Price</h4>
-				<p style="font-weight:550;">Rs 509 /-</p>
+				<%  double netTotal = (Double)request.getAttribute("total"); %>
+				<p style="font-weight:550;">Rs <%= netTotal %> /-</p>
 			</div>
 			<div >
 			<a href="check?user_id = <%= (Integer)session.getAttribute("userId") %>"><button style="width:300px; margin: 30px 8px 0 21px">Checkout</button></a></div>

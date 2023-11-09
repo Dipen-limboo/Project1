@@ -39,7 +39,7 @@ public class CartServlet extends HttpServlet {
             int productID = Integer.parseInt(request.getParameter("productID"));
             int userID = Integer.parseInt(request.getParameter("userID"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
-
+            double netTotal =0;
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false",
@@ -67,12 +67,18 @@ public class CartServlet extends HttpServlet {
                 ps.setInt(4, quantity);
 
                 int status = ps.executeUpdate();
-               if(status> 0) {                
-                response.sendRedirect("showCart");
-               } else {
-	                    response.sendRedirect("./showProduct.jsp");
+                if(status> 0) { 
+            	   PreparedStatement pss = conn.prepareStatement("insert into totals (user_id, nettotal) values (?, ?)");
+                   
+                   pss.setInt(1, userID);
+                   pss.setDouble(2, netTotal);
+                   int process = pss.executeUpdate();
+                   if(process > 0) {
+                	   response.sendRedirect("showCart");
+	               } else {
+		                    response.sendRedirect("./showProduct.jsp");
+	               }
                }
-                
 
             } catch (Exception e) {
                 System.out.println("message" + e.getMessage());
