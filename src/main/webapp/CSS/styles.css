@@ -98,10 +98,17 @@ main {
 .product h2, p{
 	margin-left: 8px;
 }
+.product_title {
+	margin-top:8px;
+}
+
 .price {
-    font-weight: bold;
-   	color:red;
-    font-size: 1.25rem;
+    font-weight: bolder;
+   	color: #111;
+}
+
+.price span {
+	font-size:small;	
 }
 
 button {
@@ -641,4 +648,10 @@ button {
  	 justify-content: space-between;
  	 font-weight: 400;font-size: 15px;
  	 padding:  10px 20px 10px 20px;
+}
+
+#checkoutButton {
+	cursor: none;
+    background: #333;
+    opacity: 0.8;
 }

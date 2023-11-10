@@ -107,8 +107,11 @@
 				%>
 				<p style="font-weight:550;">Rs <%= netTotal %> /-</p>
 			</div>
-			<div >
-			<a href="check?user_id = <%= (Integer)session.getAttribute("userId") %>"><button style="width:300px; margin: 30px 8px 0 21px">Checkout</button></a></div>
+			<div>
+				<a href="check?user_id=<%= (Integer)session.getAttribute("userId") %>">
+    		<button type="button"id="checkoutButton" style="width:300px; margin: 30px 8px 0 21px" >Checkout</button>
+			</a>
+	</div>
 		</div>
 	</div>
 	

@@ -31,6 +31,7 @@ public class showCart extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		double sumtotal = 0.0;
 	    double netTotal =0.00;
+	    double shipping = 0.00;
 		HttpSession session = request.getSession();
 
 		User user = (User) session.getAttribute("user");
@@ -41,12 +42,11 @@ public class showCart extends HttpServlet {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false",
                     "root", "0564");
 			PreparedStatement pss = conn.prepareStatement(
-	                 "SELECT t.netTotal, t.shipping, c.cart_id, c.user_id, c.quantity, c.product_id, p.product_price, p.product_image, p.product_name, p.product_keyword, c.total_price\r\n"
-	                 + "FROM carts AS c \r\n"
-	                 + "JOIN products p ON c.product_id = p.product_id \r\n"
-	                 + "JOIN users u ON c.user_id = u.id \r\n"
-	                 + "JOIN totals t on c.user_id = t.user_id\r\n"
-	                 + "WHERE c.user_id =?");
+	                 "SELECT c.cart_id, c.user_id, c.quantity, c.product_id, p.product_price, p.product_image, p.product_name, p.product_keyword, c.total_price\r\n"
+	                 + "	                 FROM carts AS c \r\n"
+	                 + "	                 JOIN products p ON c.product_id = p.product_id \r\n"
+	                 + "	                 JOIN users u ON c.user_id = u.id \r\n"
+	                 + "	                 WHERE c.user_id = ?;");
 	         pss.setInt(1, userID);
 	         List<Cart> list = new ArrayList<>();
 	         ResultSet res = pss.executeQuery();
@@ -77,8 +77,12 @@ public class showCart extends HttpServlet {
 	             cart.setQuantity(res.getInt("quantity"));
 	             
 	             list.add(cart);
+	             
+	            
 	             sumtotal += cart.getTotalPrice();
-	             netTotal = sumtotal + res.getDouble("shipping");
+	             
+	             netTotal = sumtotal + shipping;
+	             System.out.println(netTotal);
 	             PreparedStatement prepare = conn.prepareStatement("update totals set nettotal=? where user_id = ?");
 	             prepare.setDouble(1, netTotal);
 	             prepare.setInt(2, userID);
@@ -89,6 +93,7 @@ public class showCart extends HttpServlet {
 	             } else {
 	            	 out.print("Failed to update");
 	             }
+	             
 	         }
 	         request.setAttribute("nettotal", netTotal);
 	         request.setAttribute("cartList", list);

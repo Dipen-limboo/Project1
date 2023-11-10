@@ -76,10 +76,10 @@ response.setContentType("text/html");
 	             list.add(cart);
 	             sumtotal += cart.getTotalPrice();
 	             netTotal = total + shipingCost;
-	             PreparedStatement netPs = conn.prepareStatement("update totals set nettotal = ?, shipping=? where user_id=?");
+	             
+	             PreparedStatement netPs = conn.prepareStatement("update totals set nettotal = ? where user_id=?");
 	             netPs.setDouble(1, netTotal);
-	             netPs.setDouble(2, shipingCost);
-	             netPs.setInt(3, userID);
+	             netPs.setInt(2, userID);
 	             int process = netPs.executeUpdate();
 	             if(process > 0) {
 	            	 System.out.println("Updated !!");

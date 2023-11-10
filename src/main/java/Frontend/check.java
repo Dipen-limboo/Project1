@@ -31,7 +31,7 @@ public class check extends HttpServlet {
 		
         try {
         	Connection conn = UserDao.getConnection();
-        	PreparedStatement ps = conn.prepareStatement("select c.user_id, c.product_id, c.cart_id, u.fname, u.lname, u.email, t.nettotal, c.quantity from carts as c join users u on c.user_id = u.id join totals t on t.user_id = c.user_id where c.user_id = ?");
+        	PreparedStatement ps = conn.prepareStatement("select c.user_id, c.product_id, c.cart_id, u.fname, u.lname, u.email,  c.quantity from carts as c join users u on c.user_id = u.id where c.user_id = ?");
         	ps.setInt(1,  id);
         	List <Cart> list = new ArrayList<>();
         	ResultSet rs = ps.executeQuery();
@@ -47,7 +47,15 @@ public class check extends HttpServlet {
         		cart.setFirstname(rs.getString("fname"));
         		cart.setLastname(rs.getString("lname"));
         		cart.setEmail(rs.getString("email"));
-        		cart.setTotalPrice(rs.getDouble("nettotal"));
+        		
+        		PreparedStatement pres = conn.prepareStatement("select nettotal from totals where user_id = ?");
+        		pres.setInt(1, id);
+        		ResultSet res = pres.executeQuery();
+        		
+        		while (res.next()) {
+        		cart.setTotalPrice(res.getDouble("nettotal"));
+        		System.out.println(res.getDouble("nettotal"));
+        		}
         		list.add(cart);
         		sumtot = cart.getTotalPrice();
         		vat = (sumtot * 13)/100;

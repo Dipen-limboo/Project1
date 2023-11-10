@@ -48,9 +48,11 @@
        <a href = "show?product_id=<%= products.getProductID() %>" style = "text-decoration: none; color: #333"> 
        <div class="product" id= "product" >  
             <img src="data:image/jpeg;base64, <%= products.getProductImage() %>" alt="here is an image" style= "height: 150px; width: 100%">
-            <div class="product_title"><h2 style="text-align: left; font-size:12px; flex-grow:1"><%= products.getProductName() %></h2>
+            <div class="product_title">
+            	<h2 style="text-align: left; font-size:12px; flex-grow:1"><%= products.getProductName() %></h2>
 			</div>
-            <div class="product_price"><p class="price" style="text-align: left;  font-size: 11px" >Price: Rs <%= products.getProductPrice() %> /-</p>
+            <div class="product_price">
+             	<p class="price" style="text-align: left;  font-size: 11px" >Price: Rs <span><%= products.getProductPrice() %></span> /-</p>
         	</div>
         </div> </a>
         <%
