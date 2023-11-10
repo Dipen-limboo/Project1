@@ -103,7 +103,8 @@
 			</div>
 			<div style="display: flex;flex-direction: row;justify-content: space-between;font-weight: 400;font-size: 15px;padding:  10px 20px 10px 20px;">
 				<h4 style="font-weight:550;">Total Price</h4>
-				<%  double netTotal = (Double)request.getAttribute("total"); %>
+				<% double netTotal =  (Double) request.getAttribute("nettotal");
+				%>
 				<p style="font-weight:550;">Rs <%= netTotal %> /-</p>
 			</div>
 			<div >

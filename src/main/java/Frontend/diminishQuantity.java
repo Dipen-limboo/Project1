@@ -34,7 +34,7 @@ public class diminishQuantity extends HttpServlet {
 		Connection conn = null; 
 		PreparedStatement ps = null;
 		int qty = quantity - 1;
-		if(qty <= 1) {
+		if(qty < 0) {
 			request.getRequestDispatcher("showCart").forward(request, response);
 		} else {
 		try {

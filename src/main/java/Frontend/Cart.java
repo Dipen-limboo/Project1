@@ -5,14 +5,28 @@ public class Cart {
 	private int product_id;
 	private int user_id;
 	private int quantity;
-	private double total_price;
+	private double total_price, shipping, netTotal;
 	private double product_price;
 	private String product_image;
 	private String product_name, ProductKeyword;
-	
-	private String firstname;
 	private String lastname, email;
+	private String firstname;
 	
+	
+	
+	public double getShipping() {
+		return shipping;
+	}
+	public void setShipping(double shipping) {
+		this.shipping = shipping;
+	}
+	public double getNetTotal() {
+		return netTotal;
+	}
+	public void setNetTotal(double netTotal) {
+		this.netTotal = netTotal;
+	}
+
 	public String getProductKeyword() {
 		return ProductKeyword;
 	}

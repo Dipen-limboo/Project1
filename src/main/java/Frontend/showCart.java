@@ -3,6 +3,7 @@ package Frontend;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,8 +28,9 @@ public class showCart extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-
-		
+		PrintWriter out = response.getWriter();
+		double sumtotal = 0.0;
+	    double netTotal =0.00;
 		HttpSession session = request.getSession();
 
 		User user = (User) session.getAttribute("user");
@@ -39,12 +41,16 @@ public class showCart extends HttpServlet {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ourstore?useSSL=false",
                     "root", "0564");
 			PreparedStatement pss = conn.prepareStatement(
-	                 "SELECT c.cart_id, c.user_id, c.quantity, c.product_id, p.product_price, p.product_image, p.product_name, p.product_keyword, c.total_price"
-	                 + "	                         FROM carts AS c JOIN products p ON c.product_id = p.product_id JOIN users u ON c.user_id = u.id WHERE c.user_id = ?;");
+	                 "SELECT t.netTotal, t.shipping, c.cart_id, c.user_id, c.quantity, c.product_id, p.product_price, p.product_image, p.product_name, p.product_keyword, c.total_price\r\n"
+	                 + "FROM carts AS c \r\n"
+	                 + "JOIN products p ON c.product_id = p.product_id \r\n"
+	                 + "JOIN users u ON c.user_id = u.id \r\n"
+	                 + "JOIN totals t on c.user_id = t.user_id\r\n"
+	                 + "WHERE c.user_id =?");
 	         pss.setInt(1, userID);
 	         List<Cart> list = new ArrayList<>();
 	         ResultSet res = pss.executeQuery();
-	         double sumtotal = 0.0;
+	       
 	         while (res.next()) {
 	             Cart cart = new Cart();
 	             cart.setCartId(res.getInt("cart_id"));
@@ -72,8 +78,19 @@ public class showCart extends HttpServlet {
 	             
 	             list.add(cart);
 	             sumtotal += cart.getTotalPrice();
+	             netTotal = sumtotal + res.getDouble("shipping");
+	             PreparedStatement prepare = conn.prepareStatement("update totals set nettotal=? where user_id = ?");
+	             prepare.setDouble(1, netTotal);
+	             prepare.setInt(2, userID);
+	             
+	             int prep = prepare.executeUpdate();
+	             if(prep > 0) {
+	            	 out.print("Updated successfully");
+	             } else {
+	            	 out.print("Failed to update");
+	             }
 	         }
-	
+	         request.setAttribute("nettotal", netTotal);
 	         request.setAttribute("cartList", list);
 	         request.setAttribute("sumtotal", sumtotal);
 	         request.getRequestDispatcher("./trialCart.jsp").forward(request, response);

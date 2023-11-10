@@ -23,7 +23,7 @@ public class cartQuantity extends HttpServlet {
 		int userId = Integer.parseInt(request.getParameter("user_id"));
 		Connection conn = null; 
 		PreparedStatement ps = null;
-		if(quantity <= 1) {
+		if(quantity < 0) {
 			request.getRequestDispatcher("showCart").forward(request, response);
 		} else {
 		try {
