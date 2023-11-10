@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import Controller.User;
 import Controller.UserDao;
+import cart_packag.Cart;
 
 @WebServlet("/check")
 public class check extends HttpServlet {

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.List" %>
-<%@ page import = "Frontend.Orders" %>
+<%@ page import = "Order_package.Orders" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,9 +51,11 @@
 				<table>
 					<tr>
 						<th style="">Order Id </th>
+						<th>User Id</th>
+						<th>Phone</th>
 						<th style="">Location</th>
-						<th style="">Phone</th>
 						<th style="">Order Date </th>
+						<th>State</th>
 					</tr>
 					<% List <Orders> list = (List <Orders>) request.getAttribute("orderList");
 						if (list != null && !list.isEmpty()){
@@ -62,9 +64,11 @@
 					<tr>
 					
 						<td><%= order.getOrderId() %></td>
-						<td><%= order.getLocation() %></td>
+						<td><%= order.getUserId() %></td>
 						<td><%= order.getPhone() %></td>
+						<td><%= order.getLocation() %></td>
 						<td><%= order.getDateOrder() %></td>
+						<td><a href="state?order_id=<%= order.getOrderId() %>&&h3w=<%= order.getUserId() %>" ><button ><%= order.getState() %></button></a></td>
 					
 					</tr>
 					<%

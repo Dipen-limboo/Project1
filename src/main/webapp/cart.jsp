@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
-<%@ page import= "Frontend.Cart" %>
+<%@ page import= "cart_packag.Cart" %>
 <!DOCTYPE html>
 <html>
 <head>

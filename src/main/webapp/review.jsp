@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="Controller.User" %>
 <%@ page import="java.util.List" %>
-<%@ page import="Frontend.Orders" %>
+<%@ page import="Order_package.Orders" %>
 <!DOCTYPE html>
 <html>
 <head>

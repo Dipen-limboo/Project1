@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.List" %>
-<%@ page import = "Frontend.Orders" %>
+<%@ page import = "Order_package.Orders" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,15 +46,32 @@
 			<% 
 			for (Orders orders: list){
 	%>
-		<div style="display: flex; padding: 20px; width: 800px" class="table">
-    			<table>
-    				<tr>
-						<td><img alt="" src="data:image/jpeg;base64, <%= orders.getProductImage() %> " style="width:100px; height:100px"></td>
-						<td style="width: 250px; padding-left:2rem"><%= orders.getProductName() %></td>
-						<td style="width: 250px;"><span>Qty:</span> <%= orders.getQuantity() %></td>
-					</tr>
-				</table>
-				</div>
+		<div style="display: flex;flex-direction: row;justify-content: space-between;padding: 15px;height: 100px;border-top: 1.5px solid #999;margin: 10px 35px 20px 50px;border-bottom: 1.5px solid #999">
+    		
+			
+			<div style="text-align:center;display: flex;flex-direction: column;justify-content: center;">
+				<img src="data:image/jpeg;base64, <%= orders.getProductImage() %>" alt="Product-image" style = "height: 100px; width: 120px">
+			</div>
+			
+			<div style="text-align:left;display: flex;flex-direction: column;justify-content: center; width: 136px">
+				<p style="color: #333;font-weight: 550;"><%= orders.getKeyword() %></p>
+				<h4 style="font-size: 16px;font-weight: 600;color: #111;padding-top:5px"><%= orders.getProductName() %><h4>
+			</div>
+			
+			<div style="text-align:left;display: flex;flex-direction: column;justify-content: center; width: 136px">
+			<h4 style="font-size: 16px;font-weight: 600;color: #111;padding-top:5px"><%= orders.getQuantity() %><h4>
+			</div>
+			
+			<div style="text-align:center;display: flex;flex-direction: column;justify-content: center;">
+				<h4 style="color:#111"><%= orders.getState() %></h4>
+			</div>
+			
+			<div style="text-align:center;display: flex;flex-direction: column;justify-content: center; width: 100px">
+				<a href='RemoveCart?cart_id=	<%= order.getOrderId() %>	' style="color: black; text-decoration: none">
+				<i class="fa-solid fa-x" style="color: #333;"></i> Cancel 
+				</a>
+			</div>
+		</div>
 		</div>
 		<% 		}
 			}
